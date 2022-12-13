@@ -3,6 +3,7 @@ import { ref, provide } from "vue";
 import type { AuthProviders, SocialLayout, AuthView, Theme } from "@/types";
 import Container from "../UI/Container.vue";
 import EmailAuth from "./interfaces/EmailAuth.vue";
+import ForgottenPassword from "./interfaces/ForgottenPassword.vue";
 
 interface Props {
     providers?: AuthProviders;
@@ -36,7 +37,7 @@ provide("props", { ...props, authView, changeView });
             <EmailAuth />
         </template>
         <template v-else-if="authView === 'forgotten_password'">
-            <p>This is a forgotten password page</p>
+            <ForgottenPassword />
         </template>
         <template v-else-if="authView === 'magic_link'">
             <p>This is a forgotten password page</p>

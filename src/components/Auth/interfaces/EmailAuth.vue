@@ -1,11 +1,5 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
-import Input from "@/components/UI/Input.vue";
-import Label from "@/components/UI/Label.vue";
-import Button from "@/components/UI/Button.vue";
-import Message from "@/components/UI/Message.vue";
-import Container from "@/components/UI/Container.vue";
-import Anchor from "@/components/UI/Anchor.vue";
 import SocialAuth from "./SocialAuth.vue";
 // import Loader from "@/components/UI/Loader.vue";
 
@@ -27,22 +21,22 @@ const { showLinks, onlyThirdPartyProviders, providers, authView, changeView } = 
                 <Label label-for="password" label="Password" />
                 <Input v-model="password" name="password" id="password" type="password" />
             </div>
-            <Button type="button" :loading="true" variant="primary">Submit</Button>
+            <Button type="button" :loading="false" variant="primary">Submit</Button>
             <Message color="default">Hello World</Message>
             <template v-if="showLinks">
-                <Anchor href="#forgot-password" @click.prevent="changeView('forgotten_password')">
+                <Anchor href="#auth-forgot-password" @click.prevent="changeView('forgotten_password')">
                     Forgot your password?
                 </Anchor>
                 <Anchor
                     v-if="authView === 'sign_in'"
-                    href="#sign-up"
+                    href="#auth-sign-up"
                     @click.prevent="changeView('sign_up')"
                 >
                     Don't have an account? Sign up
                 </Anchor>
                 <Anchor
                     v-else-if="authView === 'sign_up'"
-                    href="#sign-in"
+                    href="#auth-sign-in"
                     @click.prevent="changeView('sign_in')"
                 >
                     Already have an account? Sign in

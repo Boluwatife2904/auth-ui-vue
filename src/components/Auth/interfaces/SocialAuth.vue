@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { inject } from "vue";
-import Container from "@/components/UI/Container.vue";
-import Button from "@/components/UI/Button.vue";
 import IconGoogle from "@/components/icons/IconGoogle.vue";
 import IconApple from "@/components/icons/IconApple.vue";
 import IconAzure from "@/components/icons/IconAzure.vue";
@@ -18,7 +16,6 @@ import IconSpotify from "@/components/icons/IconSpotify.vue";
 import IconTwitch from "@/components/icons/IconTwitch.vue";
 import IconTwitter from "@/components/icons/IconTwitter.vue";
 import IconWorkos from "@/components/icons/IconWorkos.vue";
-import Divider from "@/components/UI/Divider.vue";
 
 const { authView, socialLayout, onlyThirdPartyProviders, providers } = inject("props");
 console.log("providers from social auth component", providers, socialLayout);
