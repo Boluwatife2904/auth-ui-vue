@@ -4,6 +4,7 @@ import type { AuthProviders, SocialLayout, AuthView, Theme } from "@/types";
 import Container from "../UI/Container.vue";
 import EmailAuth from "./interfaces/EmailAuth.vue";
 import ForgottenPassword from "./interfaces/ForgottenPassword.vue";
+import MagicLink from "./interfaces/MagicLink.vue";
 
 interface Props {
     providers?: AuthProviders;
@@ -28,7 +29,11 @@ const authView = ref<AuthView>(props.view);
 const changeView = (newView: AuthView) => {
     authView.value = newView;
 };
-provide("props", { ...props, authView, changeView });
+provide("props", props);
+provide("view", {
+    authView,
+    changeView,
+});
 </script>
 
 <template>
@@ -40,10 +45,10 @@ provide("props", { ...props, authView, changeView });
             <ForgottenPassword />
         </template>
         <template v-else-if="authView === 'magic_link'">
-            <p>This is a forgotten password page</p>
+            <MagicLink />
         </template>
         <template v-else-if="authView === 'update_password'">
-            <p>This is a forgotten password page</p>
+            <p>This is an update password page</p>
         </template>
     </Container>
 </template>

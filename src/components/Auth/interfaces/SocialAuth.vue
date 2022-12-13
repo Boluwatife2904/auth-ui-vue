@@ -45,18 +45,9 @@ const Icons = {
 <template>
     <Container direction="vertical" gap="small">
         <Container :gap="hasVerticalLayout ? 'medium' : 'small'" :direction="socialLayout">
-            <Button
-                v-for="provider in providers"
-                :key="provider"
-                type="button"
-                :loading="false"
-                variant="default"
-            >
+            <Button v-for="provider in providers" :key="provider" type="button" :loading="false" variant="default">
                 <component :is="Icons[provider]"></component>
-                <template v-if="hasVerticalLayout"
-                    >{{ authView === "sign_in" ? "Sign in" : "Sign up" }} with
-                    {{ provider.charAt(0).toUpperCase() + provider.slice(1) }}</template
-                >
+                <template v-if="hasVerticalLayout">{{ authView === "sign_in" ? "Sign in" : "Sign up" }} with {{ provider.charAt(0).toUpperCase() + provider.slice(1) }}</template>
             </Button>
         </Container>
         <template v-if="!onlyThirdPartyProviders">

@@ -7,9 +7,9 @@ import Auth from "./components/Auth/Auth.vue";
     <main>
         <Auth
             social-layout="vertical"
-            view="forgotten_password"
+            view="sign_in"
             :only-third-party-providers="false"
-            :magic-link="false"
+            :magic-link="true"
             :show-links="true"
             theme="default"
         />
