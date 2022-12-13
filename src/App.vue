@@ -7,11 +7,12 @@ import Auth from "./components/Auth/Auth.vue";
     <main>
         <Auth
             social-layout="vertical"
-            view="sign_in"
+            view="forgotten_password"
             :only-third-party-providers="false"
             :magic-link="true"
             :show-links="true"
             theme="default"
+            :localization="{ lang: 'en' }"
         />
     </main>
 </template>

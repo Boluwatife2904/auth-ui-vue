@@ -4,6 +4,7 @@ interface Props {
     id: string;
     type: "text" | "email" | "password";
     modelValue: string;
+    placeholder: string,
 }
 
 defineProps<Props>();
@@ -16,6 +17,6 @@ defineEmits<Emits>();
 </script>
 
 <template>
-    <input :type="type" :name="name" :id="id" class="auth-ui__input" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
+    <input :type="type" :name="name" :id="id" class="auth-ui__input" :placeholder="placeholder" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
 </template>
 
