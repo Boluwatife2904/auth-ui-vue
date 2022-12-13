@@ -1,0 +1,13 @@
+.auth-ui__anchor {
+    font-family: var(--fonts-bodyFontFamily);
+    font-size: var(--fontSizes-baseBodySize);
+    margin-bottom: var(--space-anchorBottomMargin);
+    color: var(--colors-anchorTextColor);
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+
+    &:hover {
+        color: var(--colors-anchorTextHoverColor);
+    }
+}

@@ -1,0 +1,38 @@
+.auth-ui__divider {
+    overflow: hidden;
+    text-align: center;
+    margin: 1.6rem 0;
+    font-family: var(--fonts-bodyFontFamily);
+    font-size: var(--fontSizes-baseBodySize);
+
+    span {
+        position: relative;
+        display: inline-block;
+        color: var(--colors-dividerBackground);
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            border-bottom: 1px solid var(--colors-dividerBackground);
+            width: 100vw;
+        }
+
+        &::before {
+            right: 100%;
+        }
+
+        &::left {
+            left: 100%;
+        }
+
+        &.has-spacing {
+            &::before,
+            &::after {
+                margin: 0 1rem;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,28 @@
+// ABSTRACT IMPORTS
+@import "abstract/variables";
+
+// BASE IMPORTS
+@import "base/reset";
+
+// COMPONENTS IMPORT
+@import "components/input";
+@import "components/label";
+@import "components/button";
+@import "components/message";
+@import "components/container";
+@import "components/anchor";
+@import "components/divider";
+@import "components/loader";
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#app {
+    width: 100%;
+    max-width: 48rem;
+}

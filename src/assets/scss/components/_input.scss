@@ -1,0 +1,40 @@
+.auth-ui__input {
+    font-family: var(--fonts-inputFontFamily);
+    background: var(--colors-inputBackground);
+    border-radius: var(--radii-inputBorderRadius);
+    padding: var(--space-inputPadding);
+    cursor: text;
+    border-width: var(--borderWidths-inputBorderWidth);
+    border-color: var(--colors-inputBorder);
+    border-style: solid;
+    font-size: var(--fontSizes-baseInputSize);
+    width: 100%;
+    color: var(--colors-inputText);
+    box-sizing: border-box;
+
+    &:hover,
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        border-color: var(--colors-inputBorderHover);
+    }
+
+    &:focus {
+        border-color: var(--colors-inputBorderFocus);
+    }
+
+    &::placeholder {
+        color: var(--colors-inputPlaceholder);
+    }
+
+    transition-property: background-color, border;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+
+    // &[type="password"] {
+    //     letter-spacing: 0.6rem;
+    // }
+}
+

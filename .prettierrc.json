@@ -1,0 +1,9 @@
+{
+    "useTabs": false,
+    "tabWidth": 4,
+    "endOfLine": "crlf",
+    "semi": true,
+    "singleQuote": false,
+    "printWidth": 1000
+}
+

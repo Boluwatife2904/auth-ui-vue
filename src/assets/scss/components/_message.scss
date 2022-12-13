@@ -1,0 +1,16 @@
+.auth-ui__message {
+    font-family: var(--fonts-bodyFontFamily);
+    font-size: var(--fontSizes-baseBodySize);
+    margin-bottom: var(--space-labelBottomMargin);
+    display: block;
+    text-align: center;
+
+    &--default {
+        color: var(--colors-messageText);
+    }
+
+    &--danger {
+        color: var(--colors-messageTextDanger);
+    }
+}
+

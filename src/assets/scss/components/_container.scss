@@ -1,0 +1,35 @@
+.auth-ui__container {
+    gap: 0.4rem;
+
+    &--vertical {
+        display: flex;
+        flex-direction: column;
+        margin: 0.8rem 0;
+    }
+
+    &--horizontal {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(4.8rem, 1fr));
+    }
+
+    &--gap-small {
+        gap: 0.4rem;
+    }
+
+    &--gap-medium {
+        gap: 0.8rem;
+    }
+
+    &--gap-large {
+        gap: 1.6rem;
+    }
+
+    &--gap-xlarge {
+        gap: 2rem;
+    }
+
+    &--gap-xxlarge {
+        gap: 2.4rem;
+    }
+}
+
