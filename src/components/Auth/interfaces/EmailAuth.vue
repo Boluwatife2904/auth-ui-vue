@@ -1,26 +1,24 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import Input from "@/components/UI/Input.vue";
 import Label from "@/components/UI/Label.vue";
 import Button from "@/components/UI/Button.vue";
 import Message from "@/components/UI/Message.vue";
 import Container from "@/components/UI/Container.vue";
 import Anchor from "@/components/UI/Anchor.vue";
-import Divider from "@/components/UI/Divider.vue";
+import SocialAuth from "./SocialAuth.vue";
 // import Loader from "@/components/UI/Loader.vue";
 
 const email = ref("");
 const password = ref("");
 
-const changeView = (view: string) => {
-    console.log(view);
-};
+const { showLinks, onlyThirdPartyProviders, providers, authView, changeView } = inject("props");
 </script>
 
 <template>
     <form>
-        <Container direction="vertical" gap="large">
-            <!-- <Divider text="or continue using" /> -->
+        <SocialAuth v-if="providers && providers.length > 0" />
+        <Container v-if="!onlyThirdPartyProviders" direction="vertical" gap="large">
             <div>
                 <Label label-for="email" label="Email" />
                 <Input v-model="email" name="email" id="email" type="email" />
@@ -31,8 +29,25 @@ const changeView = (view: string) => {
             </div>
             <Button type="button" :loading="true" variant="primary">Submit</Button>
             <Message color="default">Hello World</Message>
-            <Anchor href="#forgot-password" @click.prevent="changeView('forgot-password')"> Forgot your password? </Anchor>
-            <Anchor href="#sign-up" @click.prevent="changeView('sign-up')"> Don't have an account? Sign up </Anchor>
+            <template v-if="showLinks">
+                <Anchor href="#forgot-password" @click.prevent="changeView('forgotten_password')">
+                    Forgot your password?
+                </Anchor>
+                <Anchor
+                    v-if="authView === 'sign_in'"
+                    href="#sign-up"
+                    @click.prevent="changeView('sign_up')"
+                >
+                    Don't have an account? Sign up
+                </Anchor>
+                <Anchor
+                    v-else-if="authView === 'sign_up'"
+                    href="#sign-in"
+                    @click.prevent="changeView('sign_in')"
+                >
+                    Already have an account? Sign in
+                </Anchor>
+            </template>
             <!-- <Loader /> -->
         </Container>
     </form>

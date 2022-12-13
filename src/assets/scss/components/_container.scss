@@ -9,7 +9,7 @@
 
     &--horizontal {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(4.8rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     }
 
     &--gap-small {
