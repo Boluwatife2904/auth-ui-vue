@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref, provide } from "vue";
+import { ref, provide, onMounted } from "vue";
 import type { AuthProps } from "@/types";
 import EmailAuth from "./interfaces/EmailAuth.vue";
 import ForgottenPassword from "./interfaces/ForgottenPassword.vue";
 import MagicLink from "./interfaces/MagicLink.vue";
 import UpdatePassword from "./interfaces/UpdatePassword.vue";
 import { en, ja, de_formal, de_informal } from "@/localisation";
+import { merge } from "@/utils";
 
 const props = withDefaults(defineProps<AuthProps>(), {
     view: "sign_in",
@@ -32,10 +33,7 @@ provide("view", {
 });
 
 const localizations = { en, ja, de_formal, de_informal };
-const selectedLocalization = {
-    ...localizations[props?.localization?.lang ?? "en"],
-    ...props?.localization?.variables,
-};
+const selectedLocalization = merge({ ...localizations[props?.localization?.lang ?? "en"] }, { ...props?.localization?.variables });
 
 const showUserData = (data: any) => {};
 
@@ -43,6 +41,20 @@ const setIsLoading = (loading: boolean) => {
     emits("set-loading", loading);
 };
 provide("loading", { setIsLoading });
+
+const generateCSSVariables = () => {
+    const selectedTheme = merge(props?.appearance?.theme?.default ?? {}, props?.appearance?.theme?.[props.theme] ?? {});
+
+    for (const key in selectedTheme) {
+        for (const item in selectedTheme[key]) {
+            (document.querySelector(":root") as HTMLElement)?.style.setProperty(`--${key}-${[item]}`, selectedTheme[key][item]);
+        }
+    }
+};
+
+onMounted(() => {
+    generateCSSVariables();
+});
 </script>
 
 <template>

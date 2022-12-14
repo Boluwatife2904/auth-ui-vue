@@ -2,6 +2,7 @@
 // :providers="['apple', 'azure', 'bitbucket', 'discord', 'facebook', 'github', 'gitlab', 'google', 'keycloak', 'linkedin', 'notion', 'slack', 'spotify', 'twitch', 'twitter', 'workos']"
 import Auth from "./components/Auth/Auth.vue";
 import { createClient } from "@supabase/supabase-js";
+import { ThemeSupa } from "./theming/defaultThemes";
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
 </script>
 
@@ -14,8 +15,10 @@ const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env
             :only-third-party-providers="false"
             :magic-link="true"
             :show-links="true"
-            theme="default"
             :localization="{ lang: 'en' }"
+            theme="dark"
+            :appearance="{ theme: ThemeSupa }"
+            :providers="['google']"
         />
     </main>
 </template>

@@ -1,4 +1,5 @@
 import type { Ref } from "vue";
+import type { ThemeVariables } from "@/theming";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 export type ViewSignIn = "sign_in";
@@ -11,7 +12,7 @@ export type ViewType = "sign_in" | "sign_up" | "magic_link" | "forgotten_passwor
 
 export type SocialLayout = "vertical" | "horizontal";
 
-export type Theme = "default" | "dark" | "evenDarker";
+// export type Theme = "default" | "dark" | "evenDarker";
 
 export type Provider = "apple" | "azure" | "bitbucket" | "discord" | "facebook" | "github" | "gitlab" | "google" | "keycloak" | "linkedin" | "notion" | "slack" | "spotify" | "twitch" | "twitter" | "workos";
 
@@ -56,6 +57,40 @@ export type I18nVariables = {
     };
 };
 
+export interface Theme {
+    default: ThemeVariables;
+    [key: string]: ThemeVariables;
+}
+
+export interface Appearance {
+    theme?: Theme;
+    prependedClassName?: string;
+    variables?: {
+        'default': ThemeVariables;
+        [key: string]: ThemeVariables;
+    };
+    className?: {
+        anchor?: string;
+        button?: string;
+        container?: string;
+        divider?: string;
+        input?: string;
+        label?: string;
+        loader?: string;
+        message?: string;
+    };
+    style?: {
+        anchor?: any;
+        button?: any;
+        container?: any;
+        divider?: any;
+        input?: any;
+        label?: any;
+        loader?: any;
+        message?: any;
+    };
+}
+
 export interface Localization {
     // [key: string]: I18nVariables;
     ["en"]: I18nVariables;
@@ -72,11 +107,12 @@ export interface AuthProps {
     onlyThirdPartyProviders?: boolean;
     magicLink?: boolean;
     showLinks?: boolean;
-    theme?: Theme;
+    theme?: "default" | string;
     localization?: {
         lang?: "en" | "ja" | "de_formal" | "de_informal";
         variables?: I18nVariables;
     };
+    appearance?: Appearance;
 }
 
 export interface ViewProps {

@@ -6,9 +6,6 @@
         "paths": {
             "@/*": ["./src/*"]
         },
-        "target": "ESNext",
-        "module": "ESNext",
-        "importsNotUsedAsValues": "preserve",
     },
 
     "references": [
