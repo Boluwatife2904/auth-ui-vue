@@ -1,14 +1,17 @@
 <script setup lang="ts">
-interface Props {
+import { inject } from "vue";
+import type { AuthProps } from "@/types";
+
+defineProps<{
     variant: "default" | "primary";
     type: "button" | "submit";
     loading: boolean;
-}
+}>();
 
-defineProps<Props>();
+const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <button :type="type" :class="['auth-ui__button', `auth-ui__button--${variant}`]" :disabled="false"><slot></slot></button>
+    <button :type="type" :class="['auth-ui__button', `auth-ui__button--${variant}`, appearance?.className?.button]" :style="appearance?.style?.button" :disabled="loading"><slot></slot></button>
 </template>
 

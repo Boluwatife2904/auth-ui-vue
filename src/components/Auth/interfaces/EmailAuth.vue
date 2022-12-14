@@ -18,7 +18,7 @@ const password = ref("");
 const error = ref("");
 const message = ref("");
 
-const { showLinks, onlyThirdPartyProviders, providers, magicLink, supabaseClient } = inject("props") as AuthProps;
+const { showLinks, onlyThirdPartyProviders, providers, magicLink, supabaseClient, appearance } = inject("props") as AuthProps;
 const { authView, changeView } = inject("view") as ViewProps;
 const { setIsLoading } = inject("loading") as LoadingProps;
 

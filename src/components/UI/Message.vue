@@ -1,12 +1,15 @@
 <script setup lang="ts">
-interface Props {
-    color: "default" | "danger";
-}
+import { inject } from "vue";
+import type { AuthProps } from "@/types";
 
-defineProps<Props>();
+defineProps<{
+    color: "default" | "danger";
+}>();
+
+const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <span :class="['auth-ui__message', `auth-ui__message--${color}`]"><slot></slot></span>
+    <span :class="['auth-ui__message', `auth-ui__message--${color}`, appearance?.className?.message]" :style="appearance?.style?.message"><slot></slot></span>
 </template>
 

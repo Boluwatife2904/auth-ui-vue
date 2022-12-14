@@ -1,22 +1,23 @@
 <script setup lang="ts">
-interface Props {
+import { inject } from "vue";
+import type { AuthProps } from "@/types";
+
+defineProps<{
     name: string;
     id: string;
     type: "text" | "email" | "password";
     modelValue: string;
-    placeholder: string,
-}
+    placeholder: string;
+}>();
 
-defineProps<Props>();
-
-interface Emits {
+defineEmits<{
     (e: "update:modelValue", value: string): void;
-}
+}>();
 
-defineEmits<Emits>();
+const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <input :type="type" :name="name" :id="id" class="auth-ui__input" :placeholder="placeholder" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
+    <input :type="type" :name="name" :id="id" class="auth-ui__input" :placeholder="placeholder" :class="appearance?.className?.input" :style="appearance?.style?.input" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
 </template>
 

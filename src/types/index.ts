@@ -66,7 +66,7 @@ export interface Appearance {
     theme?: Theme;
     prependedClassName?: string;
     variables?: {
-        'default': ThemeVariables;
+        default: ThemeVariables;
         [key: string]: ThemeVariables;
     };
     className?: {

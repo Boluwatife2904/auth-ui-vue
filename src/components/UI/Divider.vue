@@ -1,13 +1,16 @@
 <script setup lang="ts">
-interface Props {
-    text?: string;
-}
+import { inject } from "vue";
+import type { AuthProps } from "@/types";
 
-defineProps<Props>();
+defineProps<{
+    text?: string;
+}>();
+
+const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <div class="auth-ui__divider">
+    <div class="auth-ui__divider" :class="appearance?.className?.divider" :style="appearance?.style?.divider">
         <span :class="!!text ? 'has-spacing' : ''">{{ text }}</span>
     </div>
 </template>

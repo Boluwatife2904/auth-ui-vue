@@ -1,14 +1,16 @@
 <script setup lang="ts">
-interface Props {
+import { inject } from "vue";
+import type { AuthProps } from "@/types";
+
+defineProps<{
     labelFor: string;
     label: string;
-}
+}>();
 
-defineProps<Props>();
+const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <label :for="labelFor" class="auth-ui__label">{{ label }}</label>
+    <label :for="labelFor" class="auth-ui__label" :class="appearance?.className?.label" :style="appearance?.style?.label">{{ label }}</label>
 </template>
-
 

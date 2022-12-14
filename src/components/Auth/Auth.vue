@@ -43,7 +43,7 @@ const setIsLoading = (loading: boolean) => {
 provide("loading", { setIsLoading });
 
 const generateCSSVariables = () => {
-    const selectedTheme = merge(props?.appearance?.theme?.default ?? {}, props?.appearance?.theme?.[props.theme] ?? {});
+    const selectedTheme = merge(props?.appearance?.theme?.default ?? {}, props?.appearance?.theme?.[props.theme] ?? {}, props?.appearance?.variables?.default ?? {}, props?.appearance?.variables?.[props?.theme] ?? {});
 
     for (const key in selectedTheme) {
         for (const item in selectedTheme[key]) {
