@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject } from "vue";
-import type { I18nVariables, AuthProps, ViewProps } from "@/types";
+import { inject, ref } from "vue";
+import type { I18nVariables, AuthProps, ViewProps, LoadingProps, Provider } from "@/types";
 import IconGoogle from "@/components/icons/IconGoogle.vue";
 import IconApple from "@/components/icons/IconApple.vue";
 import IconAzure from "@/components/icons/IconAzure.vue";
@@ -22,8 +22,9 @@ defineProps<{
     i18n: I18nVariables;
 }>();
 
-const { socialLayout, onlyThirdPartyProviders, providers } = inject("props") as AuthProps;
+const { socialLayout, onlyThirdPartyProviders, providers, supabaseClient } = inject("props") as AuthProps;
 const { authView } = inject("view") as ViewProps;
+const { setIsLoading } = inject("loading") as LoadingProps;
 
 const hasVerticalLayout = socialLayout === "vertical";
 
@@ -45,12 +46,25 @@ const Icons = {
     twitter: IconTwitter,
     workos: IconWorkos,
 };
+
+const error = ref("");
+const authenticateWithProvider = async (provider: Provider) => {
+    setIsLoading(true);
+    const { error: authenticateWithProviderError } = await supabaseClient.auth.signInWithOAuth({
+        provider,
+        options: { redirectTo: "https://nsyroaidrytofnftwnrs.supabase.co/auth/v1/callback" },
+    });
+    if (authenticateWithProviderError) {
+        error.value = authenticateWithProviderError.message;
+    }
+    setIsLoading(false);
+};
 </script>
 
 <template>
     <Container direction="vertical" gap="small">
         <Container :gap="hasVerticalLayout ? 'medium' : 'small'" :direction="socialLayout">
-            <Button v-for="provider in providers" :key="provider" type="button" :loading="false" variant="default">
+            <Button v-for="provider in providers" :key="provider" type="button" :loading="false" variant="default" @click="authenticateWithProvider(provider)">
                 <component :is="Icons[provider]"></component>
                 <template v-if="hasVerticalLayout">{{ i18n[authView as "sign_in" | "sign_up"]?.social_provider_text }} {{ provider.charAt(0).toUpperCase() + provider.slice(1) }}</template>
             </Button>
