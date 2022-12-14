@@ -18,7 +18,9 @@ const sendForgottenPasswordInstructions = async () => {
     setIsLoading(true);
     error.value = "";
     message.value = "";
-    const { error: forgottenPasswordError } = await supabaseClient.auth.resetPasswordForEmail(email.value);
+    const { error: forgottenPasswordError } = await supabaseClient.auth.resetPasswordForEmail(email.value, {
+        redirectTo: "http://127.0.0.1/5173#view=update_password",
+    });
     if (forgottenPasswordError) {
         error.value = forgottenPasswordError.message;
     } else {
