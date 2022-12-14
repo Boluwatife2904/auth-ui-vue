@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
-import type { I18nVariables } from "@/types";
+import type { I18nVariables, AuthProps, ViewProps, LoadingProps } from "@/types";
 
 defineProps<{
     i18n: I18nVariables;
@@ -10,9 +10,9 @@ const email = ref("");
 const error = ref("");
 const message = ref("");
 
-const { showLinks, supabaseClient } = inject("props");
-const { changeView } = inject("view");
-const { setIsLoading } = inject("loading");
+const { showLinks, supabaseClient } = inject("props") as AuthProps;
+const { changeView } = inject("view") as ViewProps;
+const { setIsLoading } = inject("loading") as LoadingProps;
 
 const sendForgottenPasswordInstructions = async () => {
     setIsLoading(true);

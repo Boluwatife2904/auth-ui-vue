@@ -5,13 +5,16 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"]
-        }
+        },
+        "target": "ESNext",
+        "module": "ESNext",
+        "importsNotUsedAsValues": "preserve",
     },
 
     "references": [
         {
             "path": "./tsconfig.config.json"
         }
-    ]
+    ],
 }
 

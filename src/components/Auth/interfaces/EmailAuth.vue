@@ -2,7 +2,7 @@
 import { ref, inject } from "vue";
 import SocialAuth from "./SocialAuth.vue";
 // import Loader from "@/components/UI/Loader.vue";
-import type { I18nVariables } from "@/types";
+import type { I18nVariables, AuthProps, ViewProps, LoadingProps } from "@/types";
 
 defineProps<{
     i18n: I18nVariables;
@@ -18,9 +18,9 @@ const password = ref("");
 const error = ref("");
 const message = ref("");
 
-const { showLinks, onlyThirdPartyProviders, providers, magicLink, supabaseClient } = inject("props");
-const { authView, changeView } = inject("view");
-const { setIsLoading } = inject("loading");
+const { showLinks, onlyThirdPartyProviders, providers, magicLink, supabaseClient } = inject("props") as AuthProps;
+const { authView, changeView } = inject("view") as ViewProps;
+const { setIsLoading } = inject("loading") as LoadingProps;
 
 const registerOrCreateAccount = async () => {
     error.value = "";
@@ -70,12 +70,12 @@ const registerOrCreateAccount = async () => {
         <SocialAuth :i18n="i18n" v-if="providers && providers.length > 0" />
         <Container v-if="!onlyThirdPartyProviders" direction="vertical" gap="large">
             <div>
-                <Label label-for="email" :label="i18n[authView]?.email_label" />
-                <Input v-model="email" name="email" id="email" type="email" :placeholder="i18n[authView]?.email_input_placeholder" />
+                <Label label-for="email" :label="i18n[authView as 'sign_in' | 'sign_up']?.email_label" />
+                <Input v-model="email" name="email" id="email" type="email" :placeholder="i18n[authView as 'sign_in' | 'sign_up']?.email_input_placeholder" />
             </div>
             <div>
-                <Label label-for="password" :label="i18n[authView]?.password_label" />
-                <Input v-model="password" name="password" id="password" type="password" :placeholder="i18n[authView]?.password_input_placeholder" />
+                <Label label-for="password" :label="i18n[authView as 'sign_in' | 'sign_up']?.password_label" />
+                <Input v-model="password" name="password" id="password" type="password" :placeholder="i18n[authView as 'sign_in' | 'sign_up']?.password_input_placeholder" />
             </div>
             <Button type="submit" :loading="false" variant="primary">{{ i18n[authView]?.button_label }}</Button>
             <Message v-if="!!message" color="default">{{ message }}</Message>

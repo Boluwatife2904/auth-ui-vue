@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, inject } from "vue";
+import { ref } from "vue";
 import type { I18nVariables } from "@/types";
 const email = ref("");
 const error = ref("");
@@ -8,9 +8,6 @@ const message = ref("");
 defineProps<{
     i18n: I18nVariables;
 }>();
-
-const { showLinks } = inject("props");
-const { changeView } = inject("view");
 </script>
 
 <template>

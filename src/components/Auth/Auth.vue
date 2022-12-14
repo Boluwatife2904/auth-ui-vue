@@ -1,33 +1,13 @@
 <script setup lang="ts">
 import { ref, provide } from "vue";
-import type { AuthProviders, SocialLayout, AuthView, Theme, I18nVariables } from "@/types";
-import type { SupabaseClient } from "@supabase/supabase-js";
+import type { AuthProps } from "@/types";
 import EmailAuth from "./interfaces/EmailAuth.vue";
 import ForgottenPassword from "./interfaces/ForgottenPassword.vue";
 import MagicLink from "./interfaces/MagicLink.vue";
 import UpdatePassword from "./interfaces/UpdatePassword.vue";
-import * as _defaultLocalizations from "@/localisation";
+import { en, ja, de_formal, de_informal } from "@/localisation";
 
-interface Localization {
-    [key: string]: I18nVariables;
-}
-
-interface Props {
-    supabaseClient: SupabaseClient;
-    providers?: AuthProviders;
-    socialLayout?: SocialLayout;
-    view?: AuthView;
-    onlyThirdPartyProviders?: boolean;
-    magicLink?: boolean;
-    showLinks?: boolean;
-    theme?: Theme;
-    localization?: {
-        lang?: string;
-        variables?: I18nVariables;
-    };
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<AuthProps>(), {
     view: "sign_in",
     socialLayout: "vertical",
     onlyThirdPartyProviders: false,
@@ -40,11 +20,10 @@ provide("props", props);
 interface Emits {
     (e: "set-loading", value: boolean): void;
 }
-
 const emits = defineEmits<Emits>();
 
-const authView = ref<AuthView>(props.view);
-const changeView = (newView: AuthView) => {
+const authView = ref(props.view);
+const changeView = (newView: "sign_in" | "sign_up" | "magic_link" | "forgotten_password" | "update_password") => {
     authView.value = newView;
 };
 provide("view", {
@@ -52,9 +31,9 @@ provide("view", {
     changeView,
 });
 
-const defaultLocalizations: Localization = { ..._defaultLocalizations };
+const localizations = { en, ja, de_formal, de_informal };
 const selectedLocalization = {
-    ...defaultLocalizations[props?.localization?.lang ?? "en"],
+    ...localizations[props?.localization?.lang ?? "en"],
     ...props?.localization?.variables,
 };
 

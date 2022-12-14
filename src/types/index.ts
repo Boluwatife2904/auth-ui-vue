@@ -1,36 +1,21 @@
-export type AuthView = "sign_in" | "sign_up" | "forgotten_password" | "magic_link" | "update_password";
+import type { Ref } from "vue";
+import type { SupabaseClient } from "@supabase/supabase-js";
+
+export type ViewSignIn = "sign_in";
+export type ViewSignUp = "sign_up";
+export type ViewMagicLink = "magic_link";
+export type ViewForgottenPassword = "forgotten_password";
+export type ViewUpdatePassword = "update_password";
+
+export type ViewType = "sign_in" | "sign_up" | "magic_link" | "forgotten_password" | "update_password";
 
 export type SocialLayout = "vertical" | "horizontal";
 
 export type Theme = "default" | "dark" | "evenDarker";
 
-export type Provider =
-    | "apple"
-    | "azure"
-    | "bitbucket"
-    | "discord"
-    | "facebook"
-    | "github"
-    | "gitlab"
-    | "google"
-    | "keycloak"
-    | "linkedin"
-    | "notion"
-    | "slack"
-    | "spotify"
-    | "twitch"
-    | "twitter"
-    | "workos";
+export type Provider = "apple" | "azure" | "bitbucket" | "discord" | "facebook" | "github" | "gitlab" | "google" | "keycloak" | "linkedin" | "notion" | "slack" | "spotify" | "twitch" | "twitter" | "workos";
 
 export type AuthProviders = Provider[];
-
-// export interface Localization {
-//     [key: string]: I18nVariables;
-//     // ['en']: I18nVariables
-//     // ['ja']: I18nVariables
-//     // ['de_formal']: I18nVariables
-//     // ['de_informal']: I18nVariables
-// }
 
 export type I18nVariables = {
     sign_up?: {
@@ -70,4 +55,36 @@ export type I18nVariables = {
         button_label?: string;
     };
 };
+
+export interface Localization {
+    // [key: string]: I18nVariables;
+    ["en"]: I18nVariables;
+    ["ja"]: I18nVariables;
+    ["de_formal"]: I18nVariables;
+    ["de_informal"]: I18nVariables;
+}
+
+export interface AuthProps {
+    supabaseClient: SupabaseClient;
+    providers?: AuthProviders;
+    socialLayout?: SocialLayout;
+    view?: ViewType;
+    onlyThirdPartyProviders?: boolean;
+    magicLink?: boolean;
+    showLinks?: boolean;
+    theme?: Theme;
+    localization?: {
+        lang?: "en" | "ja" | "de_formal" | "de_informal";
+        variables?: I18nVariables;
+    };
+}
+
+export interface ViewProps {
+    authView: Ref<ViewType>;
+    changeView: (view: ViewType) => void;
+}
+
+export interface LoadingProps {
+    setIsLoading: (value: boolean) => void;
+}
 

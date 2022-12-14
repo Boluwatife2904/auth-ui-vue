@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject } from "vue";
-import type { I18nVariables } from "@/types";
+import type { I18nVariables, AuthProps, ViewProps } from "@/types";
 import IconGoogle from "@/components/icons/IconGoogle.vue";
 import IconApple from "@/components/icons/IconApple.vue";
 import IconAzure from "@/components/icons/IconAzure.vue";
@@ -22,8 +22,8 @@ defineProps<{
     i18n: I18nVariables;
 }>();
 
-const { socialLayout, onlyThirdPartyProviders, providers } = inject("props");
-const { authView } = inject("view");
+const { socialLayout, onlyThirdPartyProviders, providers } = inject("props") as AuthProps;
+const { authView } = inject("view") as ViewProps;
 
 const hasVerticalLayout = socialLayout === "vertical";
 
@@ -52,7 +52,7 @@ const Icons = {
         <Container :gap="hasVerticalLayout ? 'medium' : 'small'" :direction="socialLayout">
             <Button v-for="provider in providers" :key="provider" type="button" :loading="false" variant="default">
                 <component :is="Icons[provider]"></component>
-                <template v-if="hasVerticalLayout">{{ i18n[authView]?.social_provider_text }} {{ provider.charAt(0).toUpperCase() + provider.slice(1) }}</template>
+                <template v-if="hasVerticalLayout">{{ i18n[authView as "sign_in" | "sign_up"]?.social_provider_text }} {{ provider.charAt(0).toUpperCase() + provider.slice(1) }}</template>
             </Button>
         </Container>
         <template v-if="!onlyThirdPartyProviders">
