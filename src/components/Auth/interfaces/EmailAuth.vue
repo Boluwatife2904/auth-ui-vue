@@ -9,7 +9,6 @@ defineProps<{
 }>();
 
 const emits = defineEmits<{
-    (e: "set-loading", value: boolean): void;
     (e: "signin-completed", data: any): void;
     (e: "signup-completed", data: any): void;
 }>();
@@ -21,17 +20,12 @@ const message = ref("");
 
 const { showLinks, onlyThirdPartyProviders, providers, magicLink, supabaseClient } = inject("props");
 const { authView, changeView } = inject("view");
-
-const clearErrors = () => {
-    setTimeout(() => {
-        error.value = "";
-    }, 3000);
-};
+const { setIsLoading } = inject("loading");
 
 const registerOrCreateAccount = async () => {
     error.value = "";
     message.value = "";
-    emits("set-loading", true);
+    setIsLoading(true);
 
     if (authView.value === "sign_in") {
         const {
@@ -44,7 +38,6 @@ const registerOrCreateAccount = async () => {
 
         if (signInError) {
             error.value = signInError.message;
-            clearErrors();
         } else {
             emits("signin-completed", { user, session });
         }
@@ -58,21 +51,17 @@ const registerOrCreateAccount = async () => {
         });
         if (signUpError) {
             error.value = signUpError.message;
-            clearErrors();
         }
         // Check if session is null -> email confirmation setting is turned on
         else if (user && !session) {
             emits("signup-completed", { user });
             message.value = "Check your email for the confirmation link.";
-            setTimeout(() => {
-                message.value = "";
-            }, 3000);
             // Check if session exists -> email confirmation setting is turned off
         } else if (user && session) {
             emits("signup-completed", { user, session });
         }
     }
-    emits("set-loading", false);
+    setIsLoading(false);
 };
 </script>
 

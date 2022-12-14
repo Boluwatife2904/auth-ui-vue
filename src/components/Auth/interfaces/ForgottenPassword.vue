@@ -10,19 +10,33 @@ const email = ref("");
 const error = ref("");
 const message = ref("");
 
-const { showLinks } = inject("props");
+const { showLinks, supabaseClient } = inject("props");
 const { changeView } = inject("view");
+const { setIsLoading } = inject("loading");
+
+const sendForgottenPasswordInstructions = async () => {
+    setIsLoading(true);
+    error.value = "";
+    message.value = "";
+    const { error: forgottenPasswordError } = await supabaseClient.auth.resetPasswordForEmail(email.value);
+    if (forgottenPasswordError) {
+        error.value = forgottenPasswordError.message;
+    } else {
+        message.value = "Check your email for the password reset link";
+    }
+    setIsLoading(false);
+};
 </script>
 
 <template>
-    <form id="auth-forgot-password">
+    <form id="auth-forgot-password" @submit.prevent="sendForgottenPasswordInstructions">
         <Container gap="large" direction="vertical">
             <Container gap="large" direction="vertical">
                 <div>
                     <Label label-for="email" :label="i18n['forgotten_password']?.email_label" />
                     <Input v-model="email" name="email" id="email" type="email" :placeholder="i18n['forgotten_password']?.email_input_placeholder" />
                 </div>
-                <Button type="button" :loading="false" variant="primary">{{ i18n['forgotten_password']?.button_label }}</Button>
+                <Button type="submit" :loading="false" variant="primary">{{ i18n["forgotten_password"]?.button_label }}</Button>
             </Container>
             <template v-if="showLinks">
                 <Anchor href="#auth-sign-in" @click.prevent="changeView('sign_in')"> Remember your password? Login </Anchor>

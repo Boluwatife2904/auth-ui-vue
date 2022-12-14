@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, provide } from "vue";
 import type { AuthProviders, SocialLayout, AuthView, Theme, I18nVariables } from "@/types";
-import { SupabaseClient } from "@supabase/supabase-js";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import EmailAuth from "./interfaces/EmailAuth.vue";
 import ForgottenPassword from "./interfaces/ForgottenPassword.vue";
 import MagicLink from "./interfaces/MagicLink.vue";
@@ -35,13 +35,18 @@ const props = withDefaults(defineProps<Props>(), {
     showLinks: true,
     theme: "default",
 });
+provide("props", props);
+
+interface Emits {
+    (e: "set-loading", value: boolean): void;
+}
+
+const emits = defineEmits<Emits>();
 
 const authView = ref<AuthView>(props.view);
 const changeView = (newView: AuthView) => {
     authView.value = newView;
 };
-
-provide("props", props);
 provide("view", {
     authView,
     changeView,
@@ -55,13 +60,16 @@ const selectedLocalization = {
 
 const showUserData = (data: any) => {};
 
-const setIsLoading = (loading: boolean) => {};
+const setIsLoading = (loading: boolean) => {
+    emits("set-loading", loading);
+};
+provide("loading", { setIsLoading });
 </script>
 
 <template>
     <Container gap="small" direction="vertical">
         <template v-if="authView === 'sign_in' || authView === 'sign_up'">
-            <EmailAuth :i18n="selectedLocalization" @signin-completed="showUserData" @signup-completed="showUserData" @set-loading="setIsLoading" />
+            <EmailAuth :i18n="selectedLocalization" @signin-completed="showUserData" @signup-completed="showUserData" />
         </template>
         <template v-else-if="authView === 'forgotten_password'">
             <ForgottenPassword :i18n="selectedLocalization" />
