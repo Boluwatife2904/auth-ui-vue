@@ -16,7 +16,7 @@ const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env
             :magic-link="true"
             :show-links="true"
             :localization="{ lang: 'en' }"
-            theme="dark"
+            theme="default"
             :appearance="{
                 theme: ThemeSupa,
             }"
