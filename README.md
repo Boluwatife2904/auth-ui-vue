@@ -9,12 +9,12 @@ This was built as my first step towards contributing to open source and is heavi
 ## Set up Auth UI 👷🏽‍♂️
 Import the latest version of [supabase-js](https://supabase.com/docs/reference/javascript) and the Auth UI package
 #### Using npm:
-```
+```bash
 $ npm install @supabase/supabase-js @supabase/auth-ui-vue
 ```
 
 #### Using yarn:
-```
+```bash
 $ yarn add @supabase/supabase-js @supabase/auth-ui-vue
 ```
 
