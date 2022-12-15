@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
-import type { I18nVariables, AuthProps, LoadingProps } from "@/types";
+import type { I18nVariables, AuthProps, AuthEmits, LoadingProps } from "@/types";
 const password = ref("");
 const error = ref("");
 const message = ref("");
@@ -11,9 +11,10 @@ defineProps<{
 
 const { supabaseClient } = inject("props") as AuthProps;
 const { setIsLoading } = inject("loading") as LoadingProps;
+const emits = inject("emits") as AuthEmits;
 
 const updateUserPassword = async () => {
-    setIsLoading(true);
+    emits("set-loading", true);
     error.value = "";
     message.value = "";
 
@@ -22,8 +23,9 @@ const updateUserPassword = async () => {
         error.value = updateUserPasswordError.message;
     } else {
         message.value = "Your password has been updated";
+        emits("update-password-completed");
     }
-    setIsLoading(false);
+    emits("set-loading", false);
 };
 </script>
 

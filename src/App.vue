@@ -21,6 +21,7 @@ const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env
                 theme: ThemeSupa,
             }"
             :providers="['google']"
+            redirect-to="http://127.0.0.1:5173/"
         />
     </main>
 </template>

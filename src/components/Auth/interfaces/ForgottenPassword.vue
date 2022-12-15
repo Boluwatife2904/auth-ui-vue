@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
-import type { I18nVariables, AuthProps, ViewProps, LoadingProps } from "@/types";
+import type { I18nVariables, AuthProps, AuthEmits, ViewProps, } from "@/types";
 
 defineProps<{
     i18n: I18nVariables;
@@ -12,10 +12,10 @@ const message = ref("");
 
 const { showLinks, redirectTo, supabaseClient } = inject("props") as AuthProps;
 const { changeView } = inject("view") as ViewProps;
-const { setIsLoading } = inject("loading") as LoadingProps;
+const emits = inject("emits") as AuthEmits;
 
 const sendForgottenPasswordInstructions = async () => {
-    setIsLoading(true);
+    emits("set-loading", true);
     error.value = "";
     message.value = "";
     const { error: forgottenPasswordError } = await supabaseClient.auth.resetPasswordForEmail(email.value, {
@@ -25,8 +25,9 @@ const sendForgottenPasswordInstructions = async () => {
         error.value = forgottenPasswordError.message;
     } else {
         message.value = "Check your email for the password reset link";
+        emits("forgotten-password-completed");
     }
-    setIsLoading(false);
+    emits("set-loading", false);
 };
 </script>
 

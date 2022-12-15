@@ -53,7 +53,6 @@ const supabase: ThemeVariables = {
         inputBorderWidth: "1px",
     },
     radii: {
-        borderRadiusButton: "4px",
         buttonBorderRadius: "4px",
         inputBorderRadius: "4px",
     },

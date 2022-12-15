@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject, ref } from "vue";
-import type { I18nVariables, AuthProps, ViewProps, LoadingProps } from "@/types";
+import type { I18nVariables, AuthProps, AuthEmits, ViewProps } from "@/types";
 import type { Provider } from "@supabase/supabase-js";
 import IconGoogle from "@/components/icons/IconGoogle.vue";
 import IconApple from "@/components/icons/IconApple.vue";
@@ -25,7 +25,7 @@ defineProps<{
 
 const { socialLayout, onlyThirdPartyProviders, providers, redirectTo, supabaseClient } = inject("props") as AuthProps;
 const { authView } = inject("view") as ViewProps;
-const { setIsLoading } = inject("loading") as LoadingProps;
+const emits = inject("emits") as AuthEmits;
 
 const hasVerticalLayout = socialLayout === "vertical";
 
@@ -50,7 +50,7 @@ const Icons = {
 
 const error = ref("");
 const authenticateWithProvider = async (provider: Provider) => {
-    setIsLoading(true);
+    emits("set-loading", true);
     const { error: authenticateWithProviderError } = await supabaseClient.auth.signInWithOAuth({
         provider,
         options: { redirectTo },
@@ -58,7 +58,7 @@ const authenticateWithProvider = async (provider: Provider) => {
     if (authenticateWithProviderError) {
         error.value = authenticateWithProviderError.message;
     }
-    setIsLoading(false);
+    emits("set-loading", false);
 };
 </script>
 
@@ -67,7 +67,9 @@ const authenticateWithProvider = async (provider: Provider) => {
         <Container :gap="hasVerticalLayout ? 'medium' : 'small'" :direction="socialLayout">
             <Button v-for="provider in providers" :key="provider" type="button" :loading="false" variant="default" @click="authenticateWithProvider(provider)">
                 <component :is="Icons[provider]"></component>
-                <template v-if="hasVerticalLayout">{{ i18n[authView as "sign_in" | "sign_up"]?.social_provider_text }} {{ provider.charAt(0).toUpperCase() + provider.slice(1) }}</template>
+                <template v-if="hasVerticalLayout"
+                    >{{ i18n[authView as "sign_in" | "sign_up"]?.social_provider_text }} {{ provider.charAt(0).toUpperCase() + provider.slice(1) }}</template
+                >
             </Button>
         </Container>
         <template v-if="!onlyThirdPartyProviders">

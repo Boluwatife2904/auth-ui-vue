@@ -27,6 +27,7 @@ const { appearance } = inject("props") as AuthProps;
         :class="[appearance?.className?.input, appearance?.prependedClassName ? `${appearance?.prependedClassName}__input` : '']"
         :style="appearance?.style?.input"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+        required
     />
 </template>
 

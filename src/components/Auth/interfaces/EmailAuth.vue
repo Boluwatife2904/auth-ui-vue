@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
 import SocialAuth from "./SocialAuth.vue";
-// import Loader from "@/components/UI/Loader.vue";
-import type { I18nVariables, AuthProps, ViewProps, LoadingProps } from "@/types";
+import type { I18nVariables, AuthProps, AuthEmits, ViewProps, } from "@/types";
 
 defineProps<{
     i18n: I18nVariables;
-}>();
-
-const emits = defineEmits<{
-    (e: "signin-completed", data: any): void;
-    (e: "signup-completed", data: any): void;
 }>();
 
 const email = ref("");
@@ -18,14 +12,14 @@ const password = ref("");
 const error = ref("");
 const message = ref("");
 
-const { showLinks, onlyThirdPartyProviders, providers, magicLink, supabaseClient, appearance } = inject("props") as AuthProps;
+const { showLinks, onlyThirdPartyProviders, providers, magicLink, supabaseClient } = inject("props") as AuthProps;
 const { authView, changeView } = inject("view") as ViewProps;
-const { setIsLoading } = inject("loading") as LoadingProps;
+const emits = inject("emits") as AuthEmits;
 
 const registerOrCreateAccount = async () => {
     error.value = "";
     message.value = "";
-    setIsLoading(true);
+    emits("set-loading", true);
 
     if (authView.value === "sign_in") {
         const {
@@ -61,7 +55,7 @@ const registerOrCreateAccount = async () => {
             emits("signup-completed", { user, session });
         }
     }
-    setIsLoading(false);
+    emits("set-loading", false);
 };
 </script>
 
@@ -82,12 +76,12 @@ const registerOrCreateAccount = async () => {
             <Message v-if="!!error" color="danger">{{ error }}</Message>
             <template v-if="showLinks">
                 <Anchor v-if="magicLink && authView === 'sign_in'" href="#auth-magic-link" @click.prevent="changeView('magic_link')"> {{ i18n["magic_link"]?.link_text }} </Anchor>
-                <Anchor v-if="authView === 'sign_in'" href="#auth-forgot-password" @click.prevent="changeView('forgotten_password')">{{ i18n["forgotten_password"]?.link_text }} </Anchor>
+                <Anchor v-if="authView === 'sign_in'" href="#auth-forgot-password" @click.prevent="changeView('forgotten_password')"
+                    >{{ i18n["forgotten_password"]?.link_text }}
+                </Anchor>
                 <Anchor v-if="authView === 'sign_in'" href="#auth-sign-up" @click.prevent="changeView('sign_up')"> {{ i18n["sign_up"]?.link_text }} </Anchor>
                 <Anchor v-else-if="authView === 'sign_up'" href="#auth-sign-in" @click.prevent="changeView('sign_in')"> {{ i18n["sign_in"]?.link_text }} </Anchor>
             </template>
-            <!-- Still thinking is to include the loader since it wasn't added in the original version from supabase -->
-            <!-- <Loader /> -->
         </Container>
     </form>
 </template>

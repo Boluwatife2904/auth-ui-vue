@@ -12,8 +12,6 @@ export type ViewType = "sign_in" | "sign_up" | "magic_link" | "forgotten_passwor
 
 export type SocialLayout = "vertical" | "horizontal";
 
-// export type Theme = "default" | "dark" | "evenDarker";
-
 export type AuthProviders = Provider[];
 
 export type I18nVariables = {
@@ -98,14 +96,21 @@ export interface Localization {
 }
 
 export interface AuthProps {
-    supabaseClient: SupabaseClient;
-    socialLayout?: SocialLayout;
-    providers?: AuthProviders;
-    view?: ViewType;
-    redirectTo?: undefined | string;
-    onlyThirdPartyProviders?: boolean;
-    magicLink?: boolean;
-    showLinks?: boolean;
+    supabaseClient: SupabaseClient; // Supabase Client
+    socialLayout?: SocialLayout; // This detersmines how the social providers show be displayed
+    providers?: AuthProviders; // This is a list of social providers to be used
+    view?: ViewType; // This determines the type of auth component to be shown
+    redirectTo?: undefined | string; // This will determine where to redirect the user to after some auth operations
+    onlyThirdPartyProviders?: boolean; // This will toggle if to show just the social providers without the EmailAuth component
+    magicLink?: boolean; // This will toggle the 'Send magic link' on the links
+    showLinks?: boolean; // This will toggle the links on the auth component to change the auth view
+    /**
+     * This will toggle on the dark variation of the theme
+     */
+    dark?: boolean;
+    /**
+     * Override the labels and button text
+     */
     localization?: {
         lang?: "en" | "ja" | "de_formal" | "de_informal";
         variables?: I18nVariables;
@@ -123,3 +128,11 @@ export interface LoadingProps {
     setIsLoading: (value: boolean) => void;
 }
 
+export interface AuthEmits {
+    (event: "set-loading", value: boolean): void;
+    (event: "signin-completed", data: any): void;
+    (event: "signup-completed", data: any): void;
+    (event: "magic-link-sent"): void;
+    (event: "forgotten-password-completed"): void;
+    (event: "update-password-completed"): void;
+}

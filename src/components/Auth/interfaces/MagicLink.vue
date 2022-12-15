@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
-import type { I18nVariables, AuthProps, ViewProps, LoadingProps } from "@/types";
+import type { I18nVariables, AuthProps, AuthEmits, ViewProps } from "@/types";
 const email = ref("");
 const error = ref("");
 const message = ref("");
@@ -11,10 +11,10 @@ defineProps<{
 
 const { showLinks, redirectTo, supabaseClient } = inject("props") as AuthProps;
 const { changeView } = inject("view") as ViewProps;
-const { setIsLoading } = inject("loading") as LoadingProps;
+const emits = inject("emits") as AuthEmits;
 
 const sendMagicLink = async () => {
-    setIsLoading(true);
+    emits("set-loading", true);
     error.value = "";
     message.value = "";
     const { error: magicLinkError } = await supabaseClient.auth.signInWithOtp({
@@ -27,8 +27,9 @@ const sendMagicLink = async () => {
         error.value = magicLinkError.message;
     } else {
         message.value = "Check your email for the magic link";
+        emits("magic-link-sent");
     }
-    setIsLoading(false);
+    emits("set-loading", false);
 };
 </script>
 
