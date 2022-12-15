@@ -21,6 +21,9 @@
         "url": "https://github.com/Boluwatife2904/auth-ui-vue"
     },
     "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "files": [
         "dist"
     ],
