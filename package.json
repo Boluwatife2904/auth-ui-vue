@@ -1,5 +1,5 @@
 {
-    "name": "@supabase/auth-ui-vue",
+    "name": "auth-ui-vue",
     "version": "0.0.1",
     "author": {
         "email": "sanvicola2000@gmail.com",
@@ -27,12 +27,12 @@
     "files": [
         "dist"
     ],
-    "main": "./dist/@supabase/auth-ui-vue.umd.js",
-    "module": "./dist/@supabase/auth-ui-vue.es.js",
+    "main": "./dist/auth-ui-vue.umd.js",
+    "module": "./dist/auth-ui-vue.es.js",
     "exports": {
         ".": {
-            "import": "./dist/@supabase/auth-ui-vue.es.js",
-            "require": "./dist/@supabase/auth-ui-vue.umd.js"
+            "import": "./dist/auth-ui-vue.es.js",
+            "require": "./dist/auth-ui-vue.umd.js"
         },
         "./dist/style.css": "./dist/style.css"
     },

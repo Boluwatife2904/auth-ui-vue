@@ -13,13 +13,13 @@ Import the latest version of [supabase-js](https://supabase.com/docs/reference/j
 #### Using npm:
 
 ```bash
-$ npm install @supabase/supabase-js @supabase/auth-ui-vue
+$ npm install @supabase/supabase-js auth-ui-vue
 ```
 
 #### Using yarn:
 
 ```bash
-$ yarn add @supabase/supabase-js @supabase/auth-ui-vue
+$ yarn add @supabase/supabase-js auth-ui-vue
 ```
 
 ### Import the Auth component
@@ -29,8 +29,8 @@ Pass `supabaseClient` from `@supabase/supabase-js` as a prop to the component.
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth } from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+import { Auth } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -51,8 +51,8 @@ import { createClient } from "@supabase/supabase-js";
 import { Auth,
         // Import predefined theme
         ThemeSupa
-} from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+} from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -76,8 +76,8 @@ The Auth component also supports login with [offical social providers.](https://
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+import { Auth, ThemeSupa } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -115,8 +115,8 @@ import { createClient } from "@supabase/supabase-js";
 import { Auth,
         // Import predefined theme
         ThemeSupa
-} from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+} from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -142,8 +142,8 @@ Auth UI comes with two theme variations: `default` and `dark`. You can switch be
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+import { Auth, ThemeSupa } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -170,8 +170,8 @@ Auth UI themes can be overridden using variable tokens. See the [list of variabl
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+import { Auth, ThemeSupa } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -206,8 +206,8 @@ You can create your own theme by following the same structure within a `appearan
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth } from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+import { Auth } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -262,8 +262,8 @@ You can use custom CSS classes for the following elements: `"button"`, `"contain
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth } from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+import { Auth } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -291,8 +291,8 @@ You can use custom CSS inline styles for the following elements: `"button"`, `"c
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth } from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+import { Auth } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
@@ -321,8 +321,8 @@ You can use custom labels with `localization.variables`. See the [list of labels
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth } from "@supabase/auth-ui-vue";
-import "@/supabase/auth-ui-vue/style.css"
+import { Auth } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css"
 
 const supabase = createClient(
   '<INSERT PROJECT URL>',
