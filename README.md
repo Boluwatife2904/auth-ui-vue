@@ -44,9 +44,9 @@ This renders the Auth component without any styling. We recommend using one of t
 
 ```vue
 import { createClient } from "@supabase/supabase-js";
-import { Auth, 
+import { Auth,
         // Import predefined theme
-        ThemeSupa 
+        ThemeSupa
 } from "@supabase/auth-ui-vue";
 
 const supabase = createClient(
@@ -55,15 +55,16 @@ const supabase = createClient(
 )
 
 <template>
-    <Auth 
-        :supabase-client="supabase" 
+    <Auth
+        :supabase-client="supabase"
         /* Apply predefined themee */
-        :appearance="{ theme: ThemeSupa }" 
+        :appearance="{ theme: ThemeSupa }"
     />
 </template>
 ```
 
-## Social Providers
+## Social Providers 📲
+
 The Auth component also supports login with [offical social providers.](https://supabase.com/docs/guides/auth#providers)
 
 ```vue
@@ -76,11 +77,46 @@ const supabase = createClient(
 )
 
 <template>
-    <Auth 
-        :supabase-client="supabase" 
-        :appearance="{ theme: ThemeSupa }" 
+    <Auth
+        :supabase-client="supabase"
+        :appearance="{ theme: ThemeSupa }"
         :providers="['google', 'facebook', 'twitter']"
     />
 </template>
 ```
+
+## Customization ✨
+
+There are several ways to customize Auth UI:
+
+- Use one of the [predefined themes](#predefined-themes) that comes with Auth UI
+- Extend a theme by [overriding the variable tokens]() in a theme
+- [Create your own theme]()
+- [Use your own CSS classes]()
+- [Use inline styles]()
+- [Use your own labels]()
+
+### Predefined themes
+Auth UI comes with several themes to customize the appearance. Each predefined theme comes with at least two variations, a `default` variation, and a `dark` variation. You can switch between these themes using the `theme` prop. Import the theme you want to use and pass it to the `appearence.theme` prop.
+```vue
+import { createClient } from "@supabase/supabase-js";
+import { Auth,
+        // Import predefined theme
+        ThemeSupa
+} from "@supabase/auth-ui-vue";
+
+const supabase = createClient(
+  '<INSERT PROJECT URL>',
+  '<INSERT PROJECT ANON API KEY>'
+)
+
+<template>
+    <Auth
+        :supabase-client="supabase"
+        /* Apply predefined themee */
+        :appearance="{ theme: ThemeSupa }"
+    />
+</template>
+```
+> Currently there is only one predefined theme available, but I plan to add more as soon as Supabase does.
 
