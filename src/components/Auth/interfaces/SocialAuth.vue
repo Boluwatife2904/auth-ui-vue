@@ -49,7 +49,9 @@ const Icons = {
 };
 
 const error = ref("");
+const isLoading = ref(false);
 const authenticateWithProvider = async (provider: Provider) => {
+    isLoading.value = true;
     emits("set-loading", true);
     const { error: authenticateWithProviderError } = await supabaseClient.auth.signInWithOAuth({
         provider,
@@ -58,6 +60,7 @@ const authenticateWithProvider = async (provider: Provider) => {
     if (authenticateWithProviderError) {
         error.value = authenticateWithProviderError.message;
     }
+    isLoading.value = false;
     emits("set-loading", false);
 };
 </script>
@@ -65,7 +68,7 @@ const authenticateWithProvider = async (provider: Provider) => {
 <template>
     <Container direction="vertical" gap="small">
         <Container :gap="hasVerticalLayout ? 'medium' : 'small'" :direction="socialLayout">
-            <Button v-for="provider in providers" :key="provider" type="button" :loading="false" variant="default" @click="authenticateWithProvider(provider)">
+            <Button v-for="provider in providers" :key="provider" type="button" :loading="isLoading" variant="default" @click="authenticateWithProvider(provider)">
                 <component :is="Icons[provider]"></component>
                 <template v-if="hasVerticalLayout"
                     >{{ i18n[authView as "sign_in" | "sign_up"]?.social_provider_text }} {{ provider.charAt(0).toUpperCase() + provider.slice(1) }}</template

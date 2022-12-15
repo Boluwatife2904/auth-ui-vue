@@ -11,15 +11,17 @@ const email = ref("");
 const password = ref("");
 const error = ref("");
 const message = ref("");
+const isLoading = ref(false);
 
 const { showLinks, onlyThirdPartyProviders, providers, magicLink, supabaseClient } = inject("props") as AuthProps;
 const { authView, changeView } = inject("view") as ViewProps;
 const emits = inject("emits") as AuthEmits;
 
 const registerOrCreateAccount = async () => {
+    isLoading.value = true;
+    emits("set-loading", true);
     error.value = "";
     message.value = "";
-    emits("set-loading", true);
 
     if (authView.value === "sign_in") {
         const {
@@ -55,6 +57,7 @@ const registerOrCreateAccount = async () => {
             emits("signup-completed", { user, session });
         }
     }
+    isLoading.value = false;
     emits("set-loading", false);
 };
 </script>
@@ -71,7 +74,7 @@ const registerOrCreateAccount = async () => {
                 <Label label-for="password" :label="i18n[authView as 'sign_in' | 'sign_up']?.password_label" />
                 <Input v-model="password" name="password" id="password" type="password" :placeholder="i18n[authView as 'sign_in' | 'sign_up']?.password_input_placeholder" />
             </div>
-            <Button type="submit" :loading="false" variant="primary">{{ i18n[authView]?.button_label }}</Button>
+            <Button type="submit" :loading="isLoading" variant="primary">{{ i18n[authView]?.button_label }}</Button>
             <Message v-if="!!message" color="default">{{ message }}</Message>
             <Message v-if="!!error" color="danger">{{ error }}</Message>
             <template v-if="showLinks">

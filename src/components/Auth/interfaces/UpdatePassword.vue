@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
-import type { I18nVariables, AuthProps, AuthEmits, LoadingProps } from "@/types";
+import type { I18nVariables, AuthProps, AuthEmits } from "@/types";
 const password = ref("");
 const error = ref("");
 const message = ref("");
+const isLoading = ref(false);
 
 defineProps<{
     i18n: I18nVariables;
 }>();
 
 const { supabaseClient } = inject("props") as AuthProps;
-const { setIsLoading } = inject("loading") as LoadingProps;
 const emits = inject("emits") as AuthEmits;
 
 const updateUserPassword = async () => {
+    isLoading.value = true;
     emits("set-loading", true);
     error.value = "";
     message.value = "";
@@ -25,6 +26,7 @@ const updateUserPassword = async () => {
         message.value = "Your password has been updated";
         emits("update-password-completed");
     }
+    isLoading.value = false;
     emits("set-loading", false);
 };
 </script>
@@ -37,7 +39,7 @@ const updateUserPassword = async () => {
                     <Label label-for="email" :label="i18n['update_password']?.password_label" />
                     <Input v-model="password" name="password" id="password" type="password" :placeholder="i18n['update_password']?.password_input_placeholder" />
                 </div>
-                <Button type="submit" :loading="false" variant="primary">{{ i18n["update_password"]?.button_label }}</Button>
+                <Button type="submit" :loading="isLoading" variant="primary">{{ i18n["update_password"]?.button_label }}</Button>
             </Container>
             <Message v-if="!!message" color="default">{{ message }}</Message>
             <Message v-if="!!error" color="danger">{{ error }}</Message>
