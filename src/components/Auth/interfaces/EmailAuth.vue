@@ -81,7 +81,7 @@ const registerOrCreateAccount = async () => {
                 <Label label-for="password" :label="i18n[authView as 'sign_in' | 'sign_up']?.password_label" />
                 <Input v-model="password" name="password" id="password" type="password" :placeholder="i18n[authView as 'sign_in' | 'sign_up']?.password_input_placeholder" />
             </div>
-            <Button type="submit" :loading="isLoading" variant="primary">{{ i18n[authView]?.button_label }} and do something else</Button>
+            <Button type="submit" :loading="isLoading" variant="primary">{{ i18n[authView]?.button_label }}</Button>
             <Message v-if="!!message" color="default">{{ message }}</Message>
             <Message v-if="!!error" color="danger">{{ error }}</Message>
             <template v-if="showLinks">
