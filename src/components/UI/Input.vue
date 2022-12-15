@@ -18,6 +18,15 @@ const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <input :type="type" :name="name" :id="id" class="auth-ui__input" :placeholder="placeholder" :class="appearance?.className?.input" :style="appearance?.style?.input" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)" />
+    <input
+        :type="type"
+        :name="name"
+        :id="id"
+        class="auth-ui__input"
+        :placeholder="placeholder"
+        :class="[appearance?.className?.input, appearance?.prependedClassName ? `${appearance?.prependedClassName}__input` : '']"
+        :style="appearance?.style?.input"
+        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+    />
 </template>
 

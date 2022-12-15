@@ -1,6 +1,6 @@
 import type { Ref } from "vue";
 import type { ThemeVariables } from "@/theming";
-import type { SupabaseClient } from "@supabase/supabase-js";
+import type { SupabaseClient, Provider } from "@supabase/supabase-js";
 
 export type ViewSignIn = "sign_in";
 export type ViewSignUp = "sign_up";
@@ -13,8 +13,6 @@ export type ViewType = "sign_in" | "sign_up" | "magic_link" | "forgotten_passwor
 export type SocialLayout = "vertical" | "horizontal";
 
 // export type Theme = "default" | "dark" | "evenDarker";
-
-export type Provider = "apple" | "azure" | "bitbucket" | "discord" | "facebook" | "github" | "gitlab" | "google" | "keycloak" | "linkedin" | "notion" | "slack" | "spotify" | "twitch" | "twitter" | "workos";
 
 export type AuthProviders = Provider[];
 
@@ -101,18 +99,19 @@ export interface Localization {
 
 export interface AuthProps {
     supabaseClient: SupabaseClient;
-    providers?: AuthProviders;
     socialLayout?: SocialLayout;
+    providers?: AuthProviders;
     view?: ViewType;
+    redirectTo?: undefined | string;
     onlyThirdPartyProviders?: boolean;
     magicLink?: boolean;
     showLinks?: boolean;
-    theme?: "default" | string;
     localization?: {
         lang?: "en" | "ja" | "de_formal" | "de_informal";
         variables?: I18nVariables;
     };
     appearance?: Appearance;
+    theme?: "default" | string;
 }
 
 export interface ViewProps {

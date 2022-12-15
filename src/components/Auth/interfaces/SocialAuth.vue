@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { inject, ref } from "vue";
-import type { I18nVariables, AuthProps, ViewProps, LoadingProps, Provider } from "@/types";
+import type { I18nVariables, AuthProps, ViewProps, LoadingProps } from "@/types";
+import type { Provider } from "@supabase/supabase-js";
 import IconGoogle from "@/components/icons/IconGoogle.vue";
 import IconApple from "@/components/icons/IconApple.vue";
 import IconAzure from "@/components/icons/IconAzure.vue";
@@ -22,7 +23,7 @@ defineProps<{
     i18n: I18nVariables;
 }>();
 
-const { socialLayout, onlyThirdPartyProviders, providers, supabaseClient } = inject("props") as AuthProps;
+const { socialLayout, onlyThirdPartyProviders, providers, redirectTo, supabaseClient } = inject("props") as AuthProps;
 const { authView } = inject("view") as ViewProps;
 const { setIsLoading } = inject("loading") as LoadingProps;
 
@@ -52,7 +53,7 @@ const authenticateWithProvider = async (provider: Provider) => {
     setIsLoading(true);
     const { error: authenticateWithProviderError } = await supabaseClient.auth.signInWithOAuth({
         provider,
-        options: { redirectTo: "https://nsyroaidrytofnftwnrs.supabase.co/auth/v1/callback" },
+        options: { redirectTo },
     });
     if (authenticateWithProviderError) {
         error.value = authenticateWithProviderError.message;

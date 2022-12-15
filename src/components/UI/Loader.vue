@@ -15,7 +15,12 @@ const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <div v-if="isLoading" class="auth-ui__loader" :class="appearance?.className?.loader" :style="appearance?.style?.loader">
+    <div
+        v-if="isLoading"
+        class="auth-ui__loader"
+        :class="[appearance?.className?.loader, appearance?.prependedClassName ? `${appearance?.prependedClassName}__loader` : '']"
+        :style="appearance?.style?.loader"
+    >
         <div class="auth-ui__loader__spinner"></div>
     </div>
 </template>

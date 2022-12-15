@@ -11,6 +11,12 @@ const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <label :for="labelFor" class="auth-ui__label" :class="appearance?.className?.label" :style="appearance?.style?.label">{{ label }}</label>
+    <label
+        :for="labelFor"
+        class="auth-ui__label"
+        :class="[appearance?.className?.label, appearance?.prependedClassName ? `${appearance?.prependedClassName}__label` : '']"
+        :style="appearance?.style?.label"
+        >{{ label }}</label
+    >
 </template>
 

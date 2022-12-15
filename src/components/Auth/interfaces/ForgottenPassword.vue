@@ -10,7 +10,7 @@ const email = ref("");
 const error = ref("");
 const message = ref("");
 
-const { showLinks, supabaseClient } = inject("props") as AuthProps;
+const { showLinks, redirectTo, supabaseClient } = inject("props") as AuthProps;
 const { changeView } = inject("view") as ViewProps;
 const { setIsLoading } = inject("loading") as LoadingProps;
 
@@ -19,7 +19,7 @@ const sendForgottenPasswordInstructions = async () => {
     error.value = "";
     message.value = "";
     const { error: forgottenPasswordError } = await supabaseClient.auth.resetPasswordForEmail(email.value, {
-        redirectTo: "http://127.0.0.1/5173#view=update_password",
+        redirectTo,
     });
     if (forgottenPasswordError) {
         error.value = forgottenPasswordError.message;

@@ -9,7 +9,7 @@ defineProps<{
     i18n: I18nVariables;
 }>();
 
-const { showLinks, supabaseClient } = inject("props") as AuthProps;
+const { showLinks, redirectTo, supabaseClient } = inject("props") as AuthProps;
 const { changeView } = inject("view") as ViewProps;
 const { setIsLoading } = inject("loading") as LoadingProps;
 
@@ -20,7 +20,7 @@ const sendMagicLink = async () => {
     const { error: magicLinkError } = await supabaseClient.auth.signInWithOtp({
         email: email.value,
         options: {
-            emailRedirectTo: "https://google.com/magic-link",
+            emailRedirectTo: redirectTo,
         },
     });
     if (magicLinkError) {

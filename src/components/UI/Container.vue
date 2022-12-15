@@ -11,7 +11,16 @@ const { appearance } = inject("props") as AuthProps;
 </script>
 
 <template>
-    <section :class="['auth-ui__container', `auth-ui__container--${direction}`, `auth-ui__container--gap-${gap}`, appearance?.className?.container]" :style="appearance?.style?.container">
+    <section
+        :class="[
+            'auth-ui__container',
+            `auth-ui__container--${direction}`,
+            `auth-ui__container--gap-${gap}`,
+            appearance?.className?.container,
+            appearance?.prependedClassName ? `${appearance?.prependedClassName}__container` : '',
+        ]"
+        :style="appearance?.style?.container"
+    >
         <slot></slot>
     </section>
 </template>
