@@ -27,6 +27,7 @@ $ yarn add @supabase/supabase-js @supabase/auth-ui-vue
 Pass `supabaseClient` from `@supabase/supabase-js` as a prop to the component.
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-vue";
 
@@ -34,6 +35,7 @@ const supabase = createClient(
   '<INSERT PROJECT URL>',
   '<INSERT PROJECT ANON API KEY>'
 )
+</script>
 
 <template>
     <Auth :supabase-client="supabase" />
@@ -43,6 +45,7 @@ const supabase = createClient(
 This renders the Auth component without any styling. We recommend using one of the predefined themes to style the UI. Import the theme you want to use and pass it to the `appearence.theme` prop.
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth,
         // Import predefined theme
@@ -53,6 +56,7 @@ const supabase = createClient(
   '<INSERT PROJECT URL>',
   '<INSERT PROJECT ANON API KEY>'
 )
+</script>
 
 <template>
     <Auth
@@ -68,6 +72,7 @@ const supabase = createClient(
 The Auth component also supports login with [offical social providers.](https://supabase.com/docs/guides/auth#providers)
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
 
@@ -75,6 +80,7 @@ const supabase = createClient(
   '<INSERT PROJECT URL>',
   '<INSERT PROJECT ANON API KEY>'
 )
+</script>
 
 <template>
     <Auth
@@ -94,13 +100,14 @@ There are several ways to customize Auth UI:
 -   [Create your own theme](#create-your-own-theme)
 -   [Use your own CSS classes](#custom-css-classes)
 -   [Use inline styles](#custom-inline-css)
--   [Use your own labels]()
+-   [Use your own labels](#custom-labels)
 
 ### Predefined themes
 
 Auth UI comes with several themes to customize the appearance. Each predefined theme comes with at least two variations, a `default` variation, and a `dark` variation. You can switch between these themes using the `theme` prop. Import the theme you want to use and pass it to the `appearence.theme` prop.
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth,
         // Import predefined theme
@@ -111,6 +118,7 @@ const supabase = createClient(
   '<INSERT PROJECT URL>',
   '<INSERT PROJECT ANON API KEY>'
 )
+</script>
 
 <template>
     <Auth
@@ -128,6 +136,7 @@ const supabase = createClient(
 Auth UI comes with two theme variations: `default` and `dark`. You can switch between these themes with the `theme` prop.
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
 
@@ -135,6 +144,7 @@ const supabase = createClient(
   '<INSERT PROJECT URL>',
   '<INSERT PROJECT ANON API KEY>'
 )
+</script>
 
 <template>
     <Auth
@@ -153,6 +163,7 @@ If you don't pass a value to `theme` it uses the `"default"` theme. You can pass
 Auth UI themes can be overridden using variable tokens. See the [list of variable tokens.](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/theming/Themes.tsx)
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
 
@@ -160,6 +171,7 @@ const supabase = createClient(
   '<INSERT PROJECT URL>',
   '<INSERT PROJECT ANON API KEY>'
 )
+</script>
 
 <template>
     <Auth
@@ -186,6 +198,7 @@ If you created your own theme, you may not need to override any of the them.
 You can create your own theme by following the same structure within a `appearance.theme` property. See the list of [tokens within a theme.](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/theming/Themes.tsx)
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-vue";
 
@@ -197,16 +210,17 @@ const supabase = createClient(
 const customTheme = {
   default: {
     colors: {
-      brand: 'hsl(153 60.0% 53.0%)',
-      brandAccent: 'hsl(154 54.8% 45.1%)',
+      brand: 'hsl(153 60.0% 53.0%)'
+      brandAccent: 'hsl(154 54.8% 45.1%)'
       brandButtonText: 'white',
       // ..
+    }
   },
   dark: {
     colors: {
-      brandButtonText: 'white',
-      defaultButtonBackground: '#2e2e2e',
-      defaultButtonBackgroundHover: '#3e3e3e',
+      brandButtonText: 'white'
+      defaultButtonBackground: '#2e2e2e'
+      defaultButtonBackgroundHover: '#3e3e3e'
       //..
     },
   },
@@ -220,6 +234,8 @@ const customTheme = {
     },
   },
 }
+
+</script>
 
 <template>
     <Auth
@@ -237,6 +253,7 @@ You can switch between different variations of your theme with the ["theme" prop
 You can use custom CSS classes for the following elements: `"button"`, `"container"`, `"anchor"`, `"divider"`, `"label"`, `"input"`, `"loader"`, `"message"`.
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-vue";
 
@@ -244,6 +261,7 @@ const supabase = createClient(
   '<INSERT PROJECT URL>',
   '<INSERT PROJECT ANON API KEY>'
 )
+</script>
 
 <template>
     <Auth
@@ -263,6 +281,7 @@ const supabase = createClient(
 You can use custom CSS inline styles for the following elements: `"button"`, `"container"`, `"anchor"`, `"divider"`, `"label"`, `"input"`, `"loader"`, `"message"`.
 
 ```vue
+<script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-vue";
 
@@ -270,6 +289,7 @@ const supabase = createClient(
   '<INSERT PROJECT URL>',
   '<INSERT PROJECT ANON API KEY>'
 )
+</script>
 
 <template>
     <Auth
@@ -281,6 +301,38 @@ const supabase = createClient(
                 //..
             }
         }"
+    />
+</template>
+```
+
+### Custom labels
+
+You can use custom labels with `localization.variables`. See the [list of labels](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/lib/Localization/en.json) that can be overwritten.
+
+```vue
+<script setup lang="ts">
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-vue";
+
+const supabase = createClient(
+  '<INSERT PROJECT URL>',
+  '<INSERT PROJECT ANON API KEY>'
+)
+</script>
+
+<template>
+    <Auth
+        :supabase-client="supabase"
+        /* highlight starts */
+        :localization="{
+            variables: {
+                sign_in: {
+                    email_label: 'Your email address',
+                    password_label: 'Your strong password',
+                },
+            }
+        }"
+        /* Highlight ends */
     />
 </template>
 ```
