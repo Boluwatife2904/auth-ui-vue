@@ -1,16 +1,35 @@
 {
-    "name": "auth-ui-vue",
+    "name": "@supabase/auth-ui-vue",
     "version": "0.0.1",
-    "private": true,
+    "author": {
+        "email": "sanvicola2000@gmail.com",
+        "name": "Sanusi Victor Olajuwon",
+        "url": "https://sanusi-victor.netlify.app"
+    },
+    "description": "Supabase Auth UI is a pre-built Vue component for authenticating users. It supports custom themes and extensible styles to match your brand and aesthetic.",
+    "keywords": [
+        "supabase",
+        "auth",
+        "ui",
+        "vue",
+        "auth-ui",
+        "authenticate",
+        "auth-helper"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Boluwatife2904/auth-ui-vue"
+    },
+    "license": "MIT",
     "files": [
         "dist"
     ],
-    "main": "./dist/auth-ui-vue.umd.js",
-    "module": "./dist/auth-ui-vue.es.js",
+    "main": "./dist/@supabase/auth-ui-vue.umd.js",
+    "module": "./dist/@supabase/auth-ui-vue.es.js",
     "exports": {
         ".": {
-            "import": "./dist/auth-ui-vue.es.js",
-            "require": "./dist/auth-ui-vue.umd.js"
+            "import": "./dist/@supabase/auth-ui-vue.es.js",
+            "require": "./dist/@supabase/auth-ui-vue.umd.js"
         },
         "./dist/style.css": "./dist/style.css"
     },
@@ -43,3 +62,4 @@
         "vite-plugin-vue-type-imports": "^0.2.4"
     }
 }
+
