@@ -93,7 +93,7 @@ There are several ways to customize Auth UI:
 -   Extend a theme by [overriding the variable tokens](#override-themes) in a theme
 -   [Create your own theme](#create-your-own-theme)
 -   [Use your own CSS classes](#custom-css-classes)
--   [Use inline styles]()
+-   [Use inline styles](#custom-inline-css)
 -   [Use your own labels]()
 
 ### Predefined themes
@@ -252,6 +252,32 @@ const supabase = createClient(
             className: {
                 anchor: 'my-awesome-anchor',
                 button: 'my-awesome-button',
+                //..
+            }
+        }"
+    />
+</template>
+```
+
+### Custom inline CSS
+You can use custom CSS inline styles for the following elements: `"button"`, `"container"`, `"anchor"`, `"divider"`, `"label"`, `"input"`, `"loader"`, `"message"`.
+
+```vue
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-vue";
+
+const supabase = createClient(
+  '<INSERT PROJECT URL>',
+  '<INSERT PROJECT ANON API KEY>'
+)
+
+<template>
+    <Auth
+        :supabase-client="supabase"
+        :appearance="{
+            style: {
+                anchor: { color: 'blue' },
+                button: { background: 'red', color: 'white' },
                 //..
             }
         }"
