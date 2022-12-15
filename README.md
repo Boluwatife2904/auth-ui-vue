@@ -89,15 +89,17 @@ const supabase = createClient(
 
 There are several ways to customize Auth UI:
 
-- Use one of the [predefined themes](#predefined-themes) that comes with Auth UI
-- Extend a theme by [overriding the variable tokens](#override-themes) in a theme
-- [Create your own theme]()
-- [Use your own CSS classes]()
-- [Use inline styles]()
-- [Use your own labels]()
+-   Use one of the [predefined themes](#predefined-themes) that comes with Auth UI
+-   Extend a theme by [overriding the variable tokens](#override-themes) in a theme
+-   [Create your own theme](#create-your-own-theme)
+-   [Use your own CSS classes]()
+-   [Use inline styles]()
+-   [Use your own labels]()
 
 ### Predefined themes
+
 Auth UI comes with several themes to customize the appearance. Each predefined theme comes with at least two variations, a `default` variation, and a `dark` variation. You can switch between these themes using the `theme` prop. Import the theme you want to use and pass it to the `appearence.theme` prop.
+
 ```vue
 import { createClient } from "@supabase/supabase-js";
 import { Auth,
@@ -118,11 +120,13 @@ const supabase = createClient(
     />
 </template>
 ```
+
 > Currently there is only one predefined theme available, but I plan to add more as soon as Supabase does.
 
-
 ### Switch theme variations
+
 Auth UI comes with two theme variations: `default` and `dark`. You can switch between these themes with the `theme` prop.
+
 ```vue
 import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
@@ -141,11 +145,13 @@ const supabase = createClient(
     />
 </template>
 ```
+
 If you don't pass a value to `theme` it uses the `"default"` theme. You can pass `"dark"` to the theme prop to switch to the `dark` theme. If your theme has other variations, use the name of the variation in this prop.
 
-
 ### Override themes
+
 Auth UI themes can be overridden using variable tokens. See the [list of variable tokens.](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/theming/Themes.tsx)
+
 ```vue
 import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
@@ -158,7 +164,7 @@ const supabase = createClient(
 <template>
     <Auth
         :supabase-client="supabase"
-        :appearance="{ 
+        :appearance="{
             theme: ThemeSupa,
             variables: {
                 default: {
@@ -167,10 +173,62 @@ const supabase = createClient(
                         brandAccent: 'yellow'
                     }
                 }
-            } 
+            }
         }"
     />
 </template>
 ```
 
 If you created your own theme, you may not need to override any of the them.
+
+### Create your own theme
+
+You can create your own theme by following the same structure within a `appearance.theme` property. See the list of [tokens within a theme.](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/theming/Themes.tsx)
+
+```vue
+import { createClient } from "@supabase/supabase-js";
+import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
+
+const supabase = createClient(
+  '<INSERT PROJECT URL>',
+  '<INSERT PROJECT ANON API KEY>'
+)
+
+const customTheme = {
+  default: {
+    colors: {
+      brand: 'hsl(153 60.0% 53.0%)',
+      brandAccent: 'hsl(154 54.8% 45.1%)',
+      brandButtonText: 'white',
+      // ..
+  },
+  dark: {
+    colors: {
+      brandButtonText: 'white',
+      defaultButtonBackground: '#2e2e2e',
+      defaultButtonBackgroundHover: '#3e3e3e',
+      //..
+    },
+  },
+  // You can also add more theme variations with different names.
+  evenDarker: {
+    colors: {
+      brandButtonText: 'white',
+      defaultButtonBackground: '#1e1e1e',
+      defaultButtonBackgroundHover: '#2e2e2e',
+      //..
+    },
+  },
+}
+
+<template>
+    <Auth
+        :supabase-client="supabase"
+        theme="default" /* can also be "dark" or "evenDarker" */
+        :appearance="{ theme: customTheme }"
+    />
+</template>
+```
+
+You can swich between different variations of your theme with the ["theme" prop.](#switch-theme-variations)
+
