@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref } from "vue";
+import { inject, ref, defineAsyncComponent } from "vue";
 import type { I18nVariables, AuthProps, AuthEmits, ViewProps } from "@/types";
 import type { Provider } from "@supabase/supabase-js";
 import IconGoogle from "@/components/icons/IconGoogle.vue";
@@ -18,6 +18,9 @@ import IconSpotify from "@/components/icons/IconSpotify.vue";
 import IconTwitch from "@/components/icons/IconTwitch.vue";
 import IconTwitter from "@/components/icons/IconTwitter.vue";
 import IconWorkos from "@/components/icons/IconWorkos.vue";
+const Button = defineAsyncComponent(() => import("@/components/UI/Button.vue"));
+const Container = defineAsyncComponent(() => import("@/components/UI/Container.vue"));
+const Divider = defineAsyncComponent(() => import("@/components/UI/Divider.vue"));
 
 defineProps<{
     i18n: I18nVariables;

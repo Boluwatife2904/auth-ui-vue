@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref, inject, defineAsyncComponent } from "vue";
 import type { I18nVariables, AuthProps, AuthEmits, ViewProps } from "@/types";
+
+const Anchor = defineAsyncComponent(() => import("@/components/UI/Anchor.vue"));
+const Button = defineAsyncComponent(() => import("@/components/UI/Button.vue"));
+const Container = defineAsyncComponent(() => import("@/components/UI/Container.vue"));
+const Input = defineAsyncComponent(() => import("@/components/UI/Input.vue"));
+const Label = defineAsyncComponent(() => import("@/components/UI/Label.vue"));
+const Message = defineAsyncComponent(() => import("@/components/UI/Message.vue"));
 const SocialAuth = defineAsyncComponent(() => import("./SocialAuth.vue"));
 
 defineProps<{
@@ -74,7 +81,7 @@ const registerOrCreateAccount = async () => {
                 <Label label-for="password" :label="i18n[authView as 'sign_in' | 'sign_up']?.password_label" />
                 <Input v-model="password" name="password" id="password" type="password" :placeholder="i18n[authView as 'sign_in' | 'sign_up']?.password_input_placeholder" />
             </div>
-            <Button type="submit" :loading="isLoading" variant="primary">{{ i18n[authView]?.button_label }}</Button>
+            <Button type="submit" :loading="isLoading" variant="primary">{{ i18n[authView]?.button_label }} and do something else</Button>
             <Message v-if="!!message" color="default">{{ message }}</Message>
             <Message v-if="!!error" color="danger">{{ error }}</Message>
             <template v-if="showLinks">

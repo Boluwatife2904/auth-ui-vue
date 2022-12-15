@@ -4,7 +4,7 @@ import type { AuthProps } from "@/types";
 
 defineProps<{
     labelFor: string;
-    label: string;
+    label?: string;
 }>();
 
 const { appearance } = inject("props") as AuthProps;

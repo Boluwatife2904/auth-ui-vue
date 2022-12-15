@@ -8,6 +8,7 @@ const EmailAuth = defineAsyncComponent(() => import("./interfaces/EmailAuth.vue"
 const ForgottenPassword = defineAsyncComponent(() => import("./interfaces/ForgottenPassword.vue"));
 const MagicLink = defineAsyncComponent(() => import("./interfaces/MagicLink.vue"));
 const UpdatePassword = defineAsyncComponent(() => import("./interfaces/UpdatePassword.vue"));
+const Container = defineAsyncComponent(() => import("@/components/UI/Container.vue"));
 
 // Props definition and providing
 const props = withDefaults(defineProps<AuthProps>(), {

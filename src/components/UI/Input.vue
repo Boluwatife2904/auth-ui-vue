@@ -7,7 +7,7 @@ defineProps<{
     id: string;
     type: "text" | "email" | "password";
     modelValue: string;
-    placeholder: string;
+    placeholder?: string;
 }>();
 
 defineEmits<{
