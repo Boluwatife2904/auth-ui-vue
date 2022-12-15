@@ -90,7 +90,7 @@ const supabase = createClient(
 There are several ways to customize Auth UI:
 
 - Use one of the [predefined themes](#predefined-themes) that comes with Auth UI
-- Extend a theme by [overriding the variable tokens](#switch-theme-variations) in a theme
+- Extend a theme by [overriding the variable tokens](#override-themes) in a theme
 - [Create your own theme]()
 - [Use your own CSS classes]()
 - [Use inline styles]()
@@ -142,3 +142,35 @@ const supabase = createClient(
 </template>
 ```
 If you don't pass a value to `theme` it uses the `"default"` theme. You can pass `"dark"` to the theme prop to switch to the `dark` theme. If your theme has other variations, use the name of the variation in this prop.
+
+
+### Override themes
+Auth UI themes can be overridden using variable tokens. See the [list of variable tokens.](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/theming/Themes.tsx)
+```vue
+import { createClient } from "@supabase/supabase-js";
+import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
+
+const supabase = createClient(
+  '<INSERT PROJECT URL>',
+  '<INSERT PROJECT ANON API KEY>'
+)
+
+<template>
+    <Auth
+        :supabase-client="supabase"
+        :appearance="{ 
+            theme: ThemeSupa,
+            variables: {
+                default: {
+                    colors: {
+                        brand: 'orange',
+                        brandAccent: 'yellow'
+                    }
+                }
+            } 
+        }"
+    />
+</template>
+```
+
+If you created your own theme, you may not need to override any of the them.
