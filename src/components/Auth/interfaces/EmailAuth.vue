@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, inject } from "vue";
-import SocialAuth from "./SocialAuth.vue";
-import type { I18nVariables, AuthProps, AuthEmits, ViewProps, } from "@/types";
+import { ref, inject, defineAsyncComponent } from "vue";
+import type { I18nVariables, AuthProps, AuthEmits, ViewProps } from "@/types";
+const SocialAuth = defineAsyncComponent(() => import("./SocialAuth.vue"));
 
 defineProps<{
     i18n: I18nVariables;

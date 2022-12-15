@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref, provide, onMounted } from "vue";
+import { ref, provide, onMounted, defineAsyncComponent } from "vue";
 import type { AuthProps, AuthEmits } from "@/types";
-import EmailAuth from "./interfaces/EmailAuth.vue";
-import ForgottenPassword from "./interfaces/ForgottenPassword.vue";
-import MagicLink from "./interfaces/MagicLink.vue";
-import UpdatePassword from "./interfaces/UpdatePassword.vue";
 import { en, ja, de_formal, de_informal } from "@/localisation";
 import { merge } from "@/utils";
+
+const EmailAuth = defineAsyncComponent(() => import("./interfaces/EmailAuth.vue"));
+const ForgottenPassword = defineAsyncComponent(() => import("./interfaces/ForgottenPassword.vue"));
+const MagicLink = defineAsyncComponent(() => import("./interfaces/MagicLink.vue"));
+const UpdatePassword = defineAsyncComponent(() => import("./interfaces/UpdatePassword.vue"));
 
 // Props definition and providing
 const props = withDefaults(defineProps<AuthProps>(), {
@@ -54,18 +55,10 @@ onMounted(() => {
 
 <template>
     <Container gap="small" direction="vertical">
-        <template v-if="authView === 'sign_in' || authView === 'sign_up'">
-            <EmailAuth :i18n="selectedLocalization" />
-        </template>
-        <template v-else-if="authView === 'forgotten_password'">
-            <ForgottenPassword :i18n="selectedLocalization" />
-        </template>
-        <template v-else-if="authView === 'magic_link'">
-            <MagicLink :i18n="selectedLocalization" />
-        </template>
-        <template v-else-if="authView === 'update_password'">
-            <UpdatePassword :i18n="selectedLocalization" />
-        </template>
+        <EmailAuth v-if="authView === 'sign_in' || authView === 'sign_up'" :i18n="selectedLocalization" />
+        <ForgottenPassword v-else-if="authView === 'forgotten_password'" :i18n="selectedLocalization" />
+        <MagicLink v-else-if="authView === 'magic_link'" :i18n="selectedLocalization" />
+        <UpdatePassword v-else-if="authView === 'update_password'" :i18n="selectedLocalization" />
     </Container>
 </template>
 

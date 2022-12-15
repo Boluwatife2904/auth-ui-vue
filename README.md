@@ -61,7 +61,7 @@ const supabase = createClient(
 <template>
     <Auth
         :supabase-client="supabase"
-        /* Apply predefined themee */
+        /* Apply predefined theme */
         :appearance="{ theme: ThemeSupa }"
     />
 </template>
@@ -123,7 +123,7 @@ const supabase = createClient(
 <template>
     <Auth
         :supabase-client="supabase"
-        /* Apply predefined themee */
+        /* Apply predefined theme */
         :appearance="{ theme: ThemeSupa }"
     />
 </template>
