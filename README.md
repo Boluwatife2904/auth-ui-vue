@@ -58,7 +58,28 @@ const supabase = createClient(
     <Auth 
         :supabase-client="supabase" 
         /* Apply predefined themee */
-        :appearance={ theme: ThemeSupa } 
+        :appearance="{ theme: ThemeSupa }" 
+    />
+</template>
+```
+
+## Social Providers
+The Auth component also supports login with [offical social providers.](https://supabase.com/docs/guides/auth#providers)
+
+```vue
+import { createClient } from "@supabase/supabase-js";
+import { Auth, ThemeSupa } from "@supabase/auth-ui-vue";
+
+const supabase = createClient(
+  '<INSERT PROJECT URL>',
+  '<INSERT PROJECT ANON API KEY>'
+)
+
+<template>
+    <Auth 
+        :supabase-client="supabase" 
+        :appearance="{ theme: ThemeSupa }" 
+        :providers="['google', 'facebook', 'twitter']"
     />
 </template>
 ```
