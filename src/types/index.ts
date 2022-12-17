@@ -97,7 +97,7 @@ export interface Localization {
 
 export interface AuthProps {
     supabaseClient: SupabaseClient; // Supabase Client
-    socialLayout?: SocialLayout; // This detersmines how the social providers show be displayed
+    socialLayout?: SocialLayout; // This determines how the social providers show be displayed
     providers?: AuthProviders; // This is a list of social providers to be used
     view?: ViewType; // This determines the type of auth component to be shown
     redirectTo?: undefined | string; // This will determine where to redirect the user to after some auth operations

@@ -30,12 +30,9 @@ Pass `supabaseClient` from `@supabase/supabase-js` as a prop to the component.
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
 <template>
@@ -48,25 +45,17 @@ This renders the Auth component without any styling. We recommend using one of t
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth,
-        // Import predefined theme
-        ThemeSupa
+import {
+    Auth,
+    // Import predefined theme
+    ThemeSupa,
 } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
-<template>
-    <Auth
-        :supabase-client="supabase"
-        /* Apply predefined theme */
-        :appearance="{ theme: ThemeSupa }"
-    />
-</template>
+<template><Auth :supabase-client="supabase" /* Apply predefined theme */ :appearance="{ theme: ThemeSupa }" /></template>
 ```
 
 ## Social Providers 📲
@@ -77,19 +66,72 @@ The Auth component also supports login with [offical social providers.](https://
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
 <template>
-    <Auth
+    <Auth :supabase-client="supabase" :appearance="{ theme: ThemeSupa }" :providers="['google', 'facebook', 'twitter']" />
+</template>
+```
+
+## Props ⚡️
+
+There are some props that are could be passed to props to the Auth component to determine its output
+| Prop | Description | Type | default
+| --- | --- | --- | --- |
+| supabaseClient | An isomorphic Javascript client for interacting with Postgres. | _`SupabaseClient`_ |
+| socialLayout | This determines how the social providers show be displayed | _`horizontal \| vertical`_ | vertical |
+| providers | This is an array of social providers that can be used by your users to sign up | _`Provider[]`_ |
+| view | This determines what type of auth component is displayed | _`sign_in \| sign_up \| magic_link \| forgotten_password \| update_password`_ | sign_in |
+| redirectTo | This determines where supabase should redirect to when users want to sign in with a magic link, sign in with a social provider or update password | _`undefined \| string`_ |
+| onlyThirdPartyProviders | This determines whether to show the email and password mode of authentication when the [providers](#social-providers-📲) props is set | _`boolean`_ | false |
+| magicLink | This determines whether to show the _'Send Magic Link'_ anchor so users can sign in with magic link | _`boolean`_ | false |
+| showLinks | This determines whether to show the links which users can use to change the view to either _`sign_up/sign_in, magic_link,forgotten_password`_ | *`boolean`* | true |
+| localization | This determines how the auth component texts like label, placeholders, and anchors can be styled to match your design language| _`Localization`_ | { lang: 'en' } |
+| appearance | This determines how the auth component can be styled to match your design | _`Appearance`_ |
+| theme | This determines what variant of the theme passed to *`appearance.theme`* | *`default \| string`* | default |
+
+#### External resources for props:
+
+-   Check [here](https://github.com/supabase/supabase-js) to see how to initialise the `SupabaseClient`.
+-   Check [here](https://supabase.com/docs/guides/auth/overview#providers) for the list of Providers that can be passed to the `providers` prop.
+-   Check [here](#custom-labels) to see how the language of the auth component can be overwritten using the `localization` prop.
+-   Check [here](#customization-✨) to see how the auth component can be styled to match your design using the `appearance` prop.
+
+
+## Events 🌐
+These are some of the events that are emitted by the Auth component when an auth operation is completed which can be listened to on the page/component where the Auth component is being used.
+
+| Event Name | Description | Emitted Value
+| --- | --- | --- |
+| set-loading | This event is emitted when an auth operation begins and when it ends | `loading: boolean` |
+| signin-completed | This event is emitted when the user signs in into your app successfully | `data: any` |
+| signup-completed | This event is emitted when the user signs up on your app successfully | `data:any` |
+| magic-link-sent | This event is emitted when the user asks for a magic link to be sent to their email | 
+| forgotten-password-completed | This event is emitted when the user wants to reset their password and link to do so is sent to their email |
+| update-password-completed | This event is emitted when the user successfully change their password to a new one |
+
+### Example:
+
+```vue
+<script setup lang="ts">
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "auth-ui-vue";
+import "auth-ui-vue/dist/style.css";
+
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
+
+function doSomething() {
+    alert('Magic Link have being sent to your email.')
+}
+</script>
+
+<template>
+    <Auth 
         :supabase-client="supabase"
-        :appearance="{ theme: ThemeSupa }"
-        :providers="['google', 'facebook', 'twitter']"
+        @magic-link-sent="doSomething"
     />
 </template>
 ```
@@ -112,25 +154,17 @@ Auth UI comes with several themes to customize the appearance. Each predefined t
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
-import { Auth,
-        // Import predefined theme
-        ThemeSupa
+import {
+    Auth,
+    // Import predefined theme
+    ThemeSupa,
 } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
-<template>
-    <Auth
-        :supabase-client="supabase"
-        /* Apply predefined theme */
-        :appearance="{ theme: ThemeSupa }"
-    />
-</template>
+<template><Auth :supabase-client="supabase" /* Apply predefined theme */ :appearance="{ theme: ThemeSupa }" /></template>
 ```
 
 > Currently there is only one predefined theme available, but I plan to add more as soon as Supabase does.
@@ -143,22 +177,12 @@ Auth UI comes with two theme variations: `default` and `dark`. You can switch be
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
-<template>
-    <Auth
-        :supabase-client="supabase"
-        :appearance="{ theme: ThemeSupa }"
-        /* Set theme to dark */
-        theme="dark"
-    />
-</template>
+<template><Auth :supabase-client="supabase" :appearance="{ theme: ThemeSupa }" /* Set theme to dark */ theme="dark" /></template>
 ```
 
 If you don't pass a value to `theme` it uses the `"default"` theme. You can pass `"dark"` to the theme prop to switch to the `dark` theme. If your theme has other variations, use the name of the variation in this prop.
@@ -171,12 +195,9 @@ Auth UI themes can be overridden using variable tokens. See the [list of variabl
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth, ThemeSupa } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
 <template>
@@ -188,10 +209,10 @@ const supabase = createClient(
                 default: {
                     colors: {
                         brand: 'orange',
-                        brandAccent: 'yellow'
-                    }
-                }
-            }
+                        brandAccent: 'yellow',
+                    },
+                },
+            },
         }"
     />
 </template>
@@ -241,16 +262,9 @@ const customTheme = {
     },
   },
 }
-
 </script>
 
-<template>
-    <Auth
-        :supabase-client="supabase"
-        theme="default" /* can also be "dark" or "evenDarker" */
-        :appearance="{ theme: customTheme }"
-    />
-</template>
+<template><Auth :supabase-client="supabase" theme="default" /* can also be "dark" or "evenDarker" */ :appearance="{ theme: customTheme }" /></template>
 ```
 
 You can switch between different variations of your theme with the ["theme" prop.](#switch-theme-variations)
@@ -263,12 +277,9 @@ You can use custom CSS classes for the following elements: `"button"`, `"contain
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
 <template>
@@ -279,25 +290,23 @@ const supabase = createClient(
                 anchor: 'my-awesome-anchor',
                 button: 'my-awesome-button',
                 //..
-            }
+            },
         }"
     />
 </template>
 ```
 
 ### Custom inline CSS
+
 You can use custom CSS inline styles for the following elements: `"button"`, `"container"`, `"anchor"`, `"divider"`, `"label"`, `"input"`, `"loader"`, `"message"`.
 
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
 <template>
@@ -308,7 +317,7 @@ const supabase = createClient(
                 anchor: { color: 'blue' },
                 button: { background: 'red', color: 'white' },
                 //..
-            }
+            },
         }"
     />
 </template>
@@ -316,33 +325,21 @@ const supabase = createClient(
 
 ### Custom labels
 
-You can use custom labels with `localization.variables`. See the [list of labels](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/lib/Localization/en.json) that can be overwritten.
+There are currently 4 default localization which can be used with the `localization.lang` prop. They are `en`, `ja`, `de_formal`, `de_informal`.
+You can also use custom labels with `localization.variables`. See the [list of labels](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/lib/Localization/en.json) that can be overwritten.
 
 ```vue
 <script setup lang="ts">
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "auth-ui-vue";
-import "auth-ui-vue/dist/style.css"
+import "auth-ui-vue/dist/style.css";
 
-const supabase = createClient(
-  '<INSERT PROJECT URL>',
-  '<INSERT PROJECT ANON API KEY>'
-)
+const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API KEY>");
 </script>
 
 <template>
-    <Auth
-        :supabase-client="supabase"
-        /* highlight starts */
-        :localization="{
-            variables: {
-                sign_in: {
-                    email_label: 'Your email address',
-                    password_label: 'Your strong password',
-                },
-            }
-        }"
-        /* Highlight ends */
-    />
+    <Auth :supabase-client="supabase" /* highlight starts */ :localization="{ variables: { sign_in: { email_label: 'Your email address', password_label: 'Your strong password', },
+    } }" /* Highlight ends */ />
 </template>
 ```
+

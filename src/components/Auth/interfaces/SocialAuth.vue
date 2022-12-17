@@ -2,22 +2,23 @@
 import { inject, ref, defineAsyncComponent } from "vue";
 import type { I18nVariables, AuthProps, AuthEmits, ViewProps } from "@/types";
 import type { Provider } from "@supabase/supabase-js";
-import IconGoogle from "@/components/icons/IconGoogle.vue";
-import IconApple from "@/components/icons/IconApple.vue";
-import IconAzure from "@/components/icons/IconAzure.vue";
-import IconBitBucket from "@/components/icons/IconBitBucket.vue";
-import IconDiscord from "@/components/icons/IconDiscord.vue";
-import IconFacebook from "@/components/icons/IconFacebook.vue";
-import IconGithub from "@/components/icons/IconGithub.vue";
-import IconGitlab from "@/components/icons/IconGitlab.vue";
-import IconKeycloak from "@/components/icons/IconKeycloak.vue";
-import IconLinkedin from "@/components/icons/IconLinkedin.vue";
-import IconNotion from "@/components/icons/IconNotion.vue";
-import IconSlack from "@/components/icons/IconSlack.vue";
-import IconSpotify from "@/components/icons/IconSpotify.vue";
-import IconTwitch from "@/components/icons/IconTwitch.vue";
-import IconTwitter from "@/components/icons/IconTwitter.vue";
-import IconWorkos from "@/components/icons/IconWorkos.vue";
+
+const IconApple = defineAsyncComponent(() => import("@/components/icons/IconApple.vue"));
+const IconAzure = defineAsyncComponent(() => import("@/components/icons/IconAzure.vue"));
+const IconBitBucket = defineAsyncComponent(() => import("@/components/icons/IconBitBucket.vue"));
+const IconDiscord = defineAsyncComponent(() => import("@/components/icons/IconDiscord.vue"));
+const IconFacebook = defineAsyncComponent(() => import("@/components/icons/IconFacebook.vue"));
+const IconGithub = defineAsyncComponent(() => import("@/components/icons/IconGithub.vue"));
+const IconGitlab = defineAsyncComponent(() => import("@/components/icons/IconGitlab.vue"));
+const IconGoogle = defineAsyncComponent(() => import("@/components/icons/IconGoogle.vue"));
+const IconKeycloak = defineAsyncComponent(() => import("@/components/icons/IconKeycloak.vue"));
+const IconLinkedin = defineAsyncComponent(() => import("@/components/icons/IconLinkedin.vue"));
+const IconNotion = defineAsyncComponent(() => import("@/components/icons/IconNotion.vue"));
+const IconSlack = defineAsyncComponent(() => import("@/components/icons/IconSlack.vue"));
+const IconSpotify = defineAsyncComponent(() => import("@/components/icons/IconSpotify.vue"));
+const IconTwitch = defineAsyncComponent(() => import("@/components/icons/IconTwitch.vue"));
+const IconTwitter = defineAsyncComponent(() => import("@/components/icons/IconTwitter.vue"));
+const IconWorkos = defineAsyncComponent(() => import("@/components/icons/IconWorkos.vue"));
 const Button = defineAsyncComponent(() => import("@/components/UI/Button.vue"));
 const Container = defineAsyncComponent(() => import("@/components/UI/Container.vue"));
 const Divider = defineAsyncComponent(() => import("@/components/UI/Divider.vue"));
@@ -53,6 +54,7 @@ const Icons = {
 
 const error = ref("");
 const isLoading = ref(false);
+
 const authenticateWithProvider = async (provider: Provider) => {
     isLoading.value = true;
     emits("set-loading", true);
@@ -78,9 +80,7 @@ const authenticateWithProvider = async (provider: Provider) => {
                 >
             </Button>
         </Container>
-        <template v-if="!onlyThirdPartyProviders">
-            <Divider text="or continue using" />
-        </template>
+        <Divider v-if="!onlyThirdPartyProviders" text="or continue using" />
     </Container>
 </template>
 

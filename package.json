@@ -1,6 +1,6 @@
 {
     "name": "auth-ui-vue",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "author": {
         "email": "sanvicola2000@gmail.com",
         "name": "Sanusi Victor Olajuwon",
@@ -65,4 +65,3 @@
         "vite-plugin-vue-type-imports": "^0.2.4"
     }
 }
-
