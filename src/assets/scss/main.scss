@@ -13,16 +13,3 @@
 @import "components/anchor";
 @import "components/divider";
 @import "components/loader";
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-}
-
-#app {
-    width: 100%;
-    max-width: 48rem;
-}
