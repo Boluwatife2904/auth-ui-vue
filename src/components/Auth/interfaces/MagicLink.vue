@@ -2,11 +2,12 @@
 import { ref, inject, defineAsyncComponent } from "vue";
 import type { I18nVariables, AuthProps, AuthEmits, ViewProps } from "@/types";
 
-const Anchor = defineAsyncComponent(() => import("@/components/UI/Anchor.vue"));
-const Button = defineAsyncComponent(() => import("@/components/UI/Button.vue"));
-const Container = defineAsyncComponent(() => import("@/components/UI/Container.vue"));
-const Input = defineAsyncComponent(() => import("@/components/UI/Input.vue"));
-const Label = defineAsyncComponent(() => import("@/components/UI/Label.vue"));
+import Anchor from "@/components/UI/Anchor.vue";
+import Button from "@/components/UI/Button.vue";
+import Container from "@/components/UI/Container.vue";
+import Input from "@/components/UI/Input.vue";
+import Label from "@/components/UI/Label.vue";
+
 const Message = defineAsyncComponent(() => import("@/components/UI/Message.vue"));
 
 const email = ref("");

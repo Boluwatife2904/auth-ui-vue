@@ -3,6 +3,10 @@ import { inject, ref, defineAsyncComponent } from "vue";
 import type { I18nVariables, AuthProps, AuthEmits, ViewProps } from "@/types";
 import type { Provider } from "@supabase/supabase-js";
 
+import Container from "@/components/UI/Container.vue";
+import Button from  "@/components/UI/Button.vue";
+import Divider from "@/components/UI/Divider.vue";
+
 const IconApple = defineAsyncComponent(() => import("@/components/icons/IconApple.vue"));
 const IconAzure = defineAsyncComponent(() => import("@/components/icons/IconAzure.vue"));
 const IconBitBucket = defineAsyncComponent(() => import("@/components/icons/IconBitBucket.vue"));
@@ -19,9 +23,6 @@ const IconSpotify = defineAsyncComponent(() => import("@/components/icons/IconSp
 const IconTwitch = defineAsyncComponent(() => import("@/components/icons/IconTwitch.vue"));
 const IconTwitter = defineAsyncComponent(() => import("@/components/icons/IconTwitter.vue"));
 const IconWorkos = defineAsyncComponent(() => import("@/components/icons/IconWorkos.vue"));
-const Button = defineAsyncComponent(() => import("@/components/UI/Button.vue"));
-const Container = defineAsyncComponent(() => import("@/components/UI/Container.vue"));
-const Divider = defineAsyncComponent(() => import("@/components/UI/Divider.vue"));
 
 defineProps<{
     i18n: I18nVariables;
@@ -80,7 +81,7 @@ const authenticateWithProvider = async (provider: Provider) => {
                 >
             </Button>
         </Container>
-        <Divider v-if="!onlyThirdPartyProviders" text="or continue using" />
+        <Divider v-if="!onlyThirdPartyProviders" text="or" />
     </Container>
 </template>
 

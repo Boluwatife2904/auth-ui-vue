@@ -4,11 +4,11 @@ import type { AuthProps, AuthEmits } from "@/types";
 import { en, ja, de_formal, de_informal } from "@/localisation";
 import { merge } from "@/utils";
 
-const EmailAuth = defineAsyncComponent(() => import("./interfaces/EmailAuth.vue"));
+import EmailAuth from "./interfaces/EmailAuth.vue";
+import Container from "@/components/UI/Container.vue";
 const ForgottenPassword = defineAsyncComponent(() => import("./interfaces/ForgottenPassword.vue"));
 const MagicLink = defineAsyncComponent(() => import("./interfaces/MagicLink.vue"));
 const UpdatePassword = defineAsyncComponent(() => import("./interfaces/UpdatePassword.vue"));
-const Container = defineAsyncComponent(() => import("@/components/UI/Container.vue"));
 
 // Props definition and providing
 const props = withDefaults(defineProps<AuthProps>(), {
