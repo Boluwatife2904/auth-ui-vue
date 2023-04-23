@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, provide, onMounted, } from "vue";
+import { ref, provide, onMounted, watch } from "vue";
 import type { AuthProps, AuthEmits } from "@/types";
 import { en, ja, de_formal, de_informal } from "@/localisation";
 import { merge } from "@/utils";
@@ -52,6 +52,16 @@ const generateCSSVariables = () => {
 onMounted(() => {
     generateCSSVariables();
 });
+
+watch(
+    () => props.appearance,
+    () => {
+        generateCSSVariables();
+    },
+    {
+        deep: true,
+    }
+);
 </script>
 
 <template>
