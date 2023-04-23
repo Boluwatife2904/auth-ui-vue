@@ -1,6 +1,6 @@
 {
     "name": "auth-ui-vue",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "author": {
         "email": "sanvicola2000@gmail.com",
         "name": "Sanusi Victor Olajuwon",
@@ -45,7 +45,7 @@
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
     },
     "dependencies": {
-        "vue": "^3.2.45"
+        "vue": "^3.2.47"
     },
     "devDependencies": {
         "@rushstack/eslint-patch": "^1.1.4",

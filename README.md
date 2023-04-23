@@ -9,20 +9,6 @@ This was built as my first step towards contributing to open source and is heavi
 ## Demo
 You can find a link to the hosted demo [here](https://auth-ui-vue-demo-evqn.vercel.app/).
 
-## Team Members
-| Name | Github handle | Twitter Username
-| --- | --- | --- |
-| Sanusi Victor Olajuwon | Boluwatife2904 | developerbolu |
-
-## How Supabase was used
-Supabase was used extensively for authentication. With Auth UI Vue, developers are able to setup authentication for their Projects. Their users can:
-- Sign up and Login with the email and passwords.
-- They can sign in using a magic link
-- They can also request to change their password when they forget it.
-
-## Motivation
-I always wanted to work with Supabase for a fun project and learn a bit about some of the features it provided and while reading through the docs, I came across [Supabase Auth UI React](https://supabase.com/docs/guides/auth/auth-helpers/auth-ui) which allowed developers to authenticate users on their project and while it was a really interesting component, I was a bit sad when I realized it could only be used with React so I said to myself - 'This shouldn't stop me from working with Supabase'. So I picked up the challange to rebuild the same component for Vue developers so they could experience the same awesomeness as the React component.
-
 ## Set up Auth UI 👷🏽‍♂️
 
 Import the latest version of [supabase-js](https://supabase.com/docs/reference/javascript) and the Auth UI package
