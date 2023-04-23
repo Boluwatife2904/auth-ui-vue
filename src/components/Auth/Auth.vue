@@ -4,11 +4,11 @@ import type { AuthProps, AuthEmits } from "@/types";
 import { en, ja, de_formal, de_informal } from "@/localisation";
 import { merge } from "@/utils";
 
-import EmailAuth from "@/interfaces/EmailAuth.vue";
+import EmailAuth from "@/components/Auth/interfaces/EmailAuth.vue";
 import Container from "@/components/UI/Container.vue";
-import ForgottenPassword from "@/interfaces/ForgottenPassword.vue";
-import MagicLink from "@/interfaces/MagicLink.vue";
-import UpdatePassword from "@/interfaces/UpdatePassword.vue";
+import ForgottenPassword from "@/components/Auth/interfaces/ForgottenPassword.vue";
+import MagicLink from "@/components/Auth/interfaces/MagicLink.vue";
+import UpdatePassword from "@/components/Auth/interfaces/UpdatePassword.vue";
 
 // Props definition and providing
 const props = withDefaults(defineProps<AuthProps>(), {
