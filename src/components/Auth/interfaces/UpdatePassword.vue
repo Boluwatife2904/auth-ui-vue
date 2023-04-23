@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, inject, defineAsyncComponent } from "vue";
+import { ref, inject } from "vue";
 import type { I18nVariables, AuthProps, AuthEmits } from "@/types";
 
 import Button from "@/components/UI/Button.vue";
@@ -7,7 +7,7 @@ import Container from "@/components/UI/Container.vue";
 import Input from "@/components/UI/Input.vue";
 import Label from "@/components/UI/Label.vue";
 
-const Message = defineAsyncComponent(() => import("@/components/UI/Message.vue"));
+import Message from "@/components/UI/Message.vue";
 
 const password = ref("");
 const error = ref("");

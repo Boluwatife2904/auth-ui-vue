@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref, provide, onMounted, defineAsyncComponent } from "vue";
+import { ref, provide, onMounted, } from "vue";
 import type { AuthProps, AuthEmits } from "@/types";
 import { en, ja, de_formal, de_informal } from "@/localisation";
 import { merge } from "@/utils";
 
-import EmailAuth from "./interfaces/EmailAuth.vue";
+import EmailAuth from "@/interfaces/EmailAuth.vue";
 import Container from "@/components/UI/Container.vue";
-const ForgottenPassword = defineAsyncComponent(() => import("./interfaces/ForgottenPassword.vue"));
-const MagicLink = defineAsyncComponent(() => import("./interfaces/MagicLink.vue"));
-const UpdatePassword = defineAsyncComponent(() => import("./interfaces/UpdatePassword.vue"));
+import ForgottenPassword from "@/interfaces/ForgottenPassword.vue";
+import MagicLink from "@/interfaces/MagicLink.vue";
+import UpdatePassword from "@/interfaces/UpdatePassword.vue";
 
 // Props definition and providing
 const props = withDefaults(defineProps<AuthProps>(), {
