@@ -4,7 +4,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import VueTypeImports from "vite-plugin-vue-type-imports";
-
+import typescript2 from "rollup-plugin-typescript2"
 // https://vitejs.dev/config/
 export default defineConfig({
     build: {
@@ -28,7 +28,19 @@ export default defineConfig({
             },
         },
     },
-    plugins: [vue(), VueTypeImports()],
+    plugins: [vue(), VueTypeImports(), typescript2({
+        check: false,
+        include: ["src/components/**/*.vue", 'src/index.ts'],
+        tsconfigOverride: {
+            compilerOptions: {
+                outDir: "dist",
+                sourceMap: true,
+                declaration: true,
+                declarationMap: true,
+            },
+        },
+        exclude: ["vite.config.ts"]
+    })],
     resolve: {
         alias: {
             "@": fileURLToPath(new URL("./src", import.meta.url)),
