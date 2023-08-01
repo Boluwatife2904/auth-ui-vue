@@ -53,7 +53,7 @@ const sendForgottenPasswordInstructions = async () => {
                 <Button type="submit" :loading="isLoading" variant="primary">{{ i18n["forgotten_password"]?.button_label }}</Button>
             </Container>
             <template v-if="showLinks">
-                <Anchor href="#auth-sign-in" @click.prevent="changeView('sign_in')"> Remember your password? Login </Anchor>
+                <Anchor href="#auth-sign-in" @click.prevent="changeView('sign_in')">{{ i18n["forgotten_password"]?.remember_password_link_text }}</Anchor>
             </template>
             <Message v-if="!!message" color="default">{{ message }}</Message>
             <Message v-if="!!error" color="danger">{{ error }}</Message>
