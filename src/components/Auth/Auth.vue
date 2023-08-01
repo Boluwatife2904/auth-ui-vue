@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, provide, onMounted, watch } from "vue";
 import type { AuthProps, AuthEmits } from "@/types";
-import { en, ja, de_formal, de_informal } from "@/localisation";
+import { en, ja, de_formal, de_informal, pt_br } from "@/localisation";
 import { merge } from "@/utils";
 
 import EmailAuth from "@/components/Auth/interfaces/EmailAuth.vue";
@@ -31,7 +31,7 @@ const changeView = (newView: "sign_in" | "sign_up" | "magic_link" | "forgotten_p
 };
 provide("view", { authView, changeView });
 
-const localizations = { en, ja, de_formal, de_informal };
+const localizations = { en, ja, de_formal, de_informal, pt_br };
 const selectedLocalization = merge({ ...localizations[props?.localization?.lang ?? "en"] }, { ...props?.localization?.variables });
 
 const generateCSSVariables = () => {

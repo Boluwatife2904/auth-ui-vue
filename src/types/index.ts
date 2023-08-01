@@ -93,6 +93,7 @@ export interface Localization {
     ["ja"]: I18nVariables;
     ["de_formal"]: I18nVariables;
     ["de_informal"]: I18nVariables;
+    ["pt_br"]: I18nVariables;
 }
 
 export interface AuthProps {
@@ -112,7 +113,7 @@ export interface AuthProps {
      * Override the labels and button text
      */
     localization?: {
-        lang?: "en" | "ja" | "de_formal" | "de_informal";
+        lang?: "en" | "ja" | "de_formal" | "de_informal" | "pt_br";
         variables?: I18nVariables;
     };
     appearance?: Appearance;
