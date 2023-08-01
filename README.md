@@ -328,7 +328,7 @@ const supabase = createClient("<INSERT PROJECT URL>", "<INSERT PROJECT ANON API 
 
 ### Custom labels
 
-There are currently 4 default localization which can be used with the `localization.lang` prop. They are `en`, `ja`, `de_formal`, `de_informal`.
+There are currently 5 default localization which can be used with the `localization.lang` prop. They are `en`, `ja`, `de_formal`, `de_informal`, `pt_br`.
 You can also use custom labels with `localization.variables`. See the [list of labels](https://github.com/supabase-community/auth-ui/blob/main/packages/react/common/lib/Localization/en.json) that can be overwritten.
 
 ```vue
