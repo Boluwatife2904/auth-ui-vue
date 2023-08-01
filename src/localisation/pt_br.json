@@ -28,7 +28,8 @@
         "password_label": "Crie uma senha",
         "email_input_placeholder": "Seu endereço de e-mail",
         "button_label": "Enviar instruções de redefinição de senha",
-        "link_text": "Esqueceu sua senha?"
+        "link_text": "Esqueceu sua senha?",
+        "remember_password_link_text": "Lembrou sua senha? Entre"
     },
     "update_password": {
         "password_label": "Nova senha",
